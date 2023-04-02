@@ -1,0 +1,26 @@
+{
+  "Success": {
+    "code": 0,
+    "msg": "OK"
+  },
+  "SystemError": {
+    "code": 4001,
+    "msg": "SystemError"
+  },
+  "QueryError": {
+    "code": 4002,
+    "msg": "QueryError"
+  },
+  "ParametersError": {
+    "code": 4003,
+    "msg": "ParametersError"
+  },
+  "CallServiceError": {
+    "code": 4004,
+    "msg": "CallServiceError"
+  },
+  "PayloadTooLargeError": {
+    "code": 4005,
+    "msg": "PayloadTooLargeError"
+  }
+}

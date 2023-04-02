@@ -1,0 +1,138 @@
+{
+  "pm2": true,
+  "pm2InstanceVar": "isMaster",
+  "levels": {
+    "acc": {
+      "value": 5000,
+      "colour": "green"
+    },
+    "biz": {
+      "value": 10000,
+      "colour": "cyan"
+    },
+    "debug": {
+      "value": 20000,
+      "colour": "blue"
+    },
+    "warn": {
+      "value": 30000,
+      "colour": "yellow"
+    },
+    "error": {
+      "value": 40000,
+      "colour": "red"
+    }
+  },
+  "appenders": {
+    "console": {
+      "type": "console",
+      "layout": {
+        "type": "pattern",
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+      }
+    },
+    "acc": {
+      "type": "dateFile",
+      "filename": "log/acc/acc",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "300M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    },
+    "biz": {
+      "type": "dateFile",
+      "filename": "log/biz/biz",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "300M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    },
+    "debug": {
+      "type": "dateFile",
+      "filename": "log/app/debug",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "300M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    },
+    "warn": {
+      "type": "dateFile",
+      "filename": "log/app/warn",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "300M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    },
+    "error": {
+      "type": "dateFile",
+      "filename": "log/app/error",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "300M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    }
+  },
+  "categories": {
+    "default": {
+      "appenders": [
+        "console"
+      ],
+      "level": "all"
+    },
+    "acc": {
+      "appenders": [
+        "acc","console"
+      ],
+      "level": "acc"
+    },
+    "biz": {
+      "appenders": [
+        "biz","console"
+      ],
+      "level": "biz"
+    },
+    "debug": {
+      "appenders": [
+        "debug","console"
+      ],
+      "level": "debug"
+    },
+    "warn": {
+      "appenders": [
+        "warn","console"
+      ],
+      "level": "warn"
+    },
+    "error": {
+      "appenders": [
+        "error","console"
+      ],
+      "level": "error"
+    }
+  }
+}

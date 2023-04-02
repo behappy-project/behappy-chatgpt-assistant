@@ -1,0 +1,9 @@
+{
+  "sys": {
+    "port": "PORT"
+  },
+  "chatGpt": {
+    "host": "CHAT_GPT_HOST",
+    "key": "OPEN_API_KEY"
+  }
+}
