@@ -1,6 +1,10 @@
 ## 技术沟通群
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
+## TODO
+- [x] 购买域名
+- [ ] 解决 Vercel 在国内无法访问
+
 ## ChatGPT 桌面助理
 - 提供exe程序，方便使用访问
 - 内置openAPI key，供测试使用
