@@ -18,7 +18,6 @@ export const envCfg = (() => {
   }
 
   // 非本地开发环境
-  console.log(`环境: ${process.env.NODE_ENV}`);
   const conf = require('./config.json');
 
   // 配置自检
