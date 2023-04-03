@@ -31,13 +31,7 @@ export const envCfg = (() => {
       }
 
       // 服务调用参数配置
-      if (!process.env[cfgNode[pro]]) {
-        console.error(`参数: ${cfgNode[pro]} 未设置.`);
-        result = false;
-      } else {
-        cfgNode[pro] = process.env[cfgNode[pro]];
-        result = result && true;
-      }
+      cfgNode[pro] = process.env[cfgNode[pro]];
     }
 
     return result;
