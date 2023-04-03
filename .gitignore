@@ -1,5 +1,6 @@
 # local config
 config/local.json
+package-lock.json
 # Logs
 logs
 *.log
