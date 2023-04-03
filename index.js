@@ -1,7 +1,6 @@
 import Koa from 'koa';
 import koaBody from 'koa-body';
 import logger from './lib/log4j';
-import {rest} from './lib/rest';
 import {resMsg} from './lib/response';
 import './lib/utils';
 import * as routes from './routes';
@@ -12,11 +11,6 @@ const app = new Koa();
 
 // ctx.log
 app.use(logger(app.context, {appName: sysCfg.name}));
-// ctx.rest
-app.use(rest({
-    appName: sysCfg.name,
-    apiKey: envCfg.chatGpt.key
-}));
 // ctx.send
 app.use(resMsg());
 // ctx.openai
@@ -43,7 +37,7 @@ app.on('error', async (err, ctx) => {
 });
 
 // listening
-const port = Number(process.env.PORT || sysCfg.port);
+const port = Number(sysCfg.port);
 app.listen(port, '0.0.0.0')
     .on('listening', () => {
         console.log(`Listening on port: ${port}`);

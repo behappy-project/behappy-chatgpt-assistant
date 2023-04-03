@@ -35,35 +35,35 @@
       "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "biz": {
       "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "debug": {
       "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "warn": {
       "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "error": {
       "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     }
   },
@@ -76,31 +76,31 @@
     },
     "acc": {
       "appenders": [
-        "acc","console"
+        "acc"
       ],
       "level": "acc"
     },
     "biz": {
       "appenders": [
-        "biz","console"
+        "biz"
       ],
       "level": "biz"
     },
     "debug": {
       "appenders": [
-        "debug","console"
+        "debug"
       ],
       "level": "debug"
     },
     "warn": {
       "appenders": [
-        "warn","console"
+        "warn"
       ],
       "level": "warn"
     },
     "error": {
       "appenders": [
-        "error","console"
+        "error"
       ],
       "level": "error"
     }

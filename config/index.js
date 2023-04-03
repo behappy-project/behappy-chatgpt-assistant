@@ -10,7 +10,6 @@ export const envCfg = (() => {
     if (existsSync(`${__dirname}/local.json`)) {
       const conf = require('./local.json');
       console.log(`${name} 服务配置参数加载成功`);
-      console.log('envCfg:', conf);
       return conf;
     }
     console.error(`${name} 服务配置自检未通过,服务已停止`);
