@@ -44,4 +44,8 @@ app.on('error', async (err, ctx) => {
 
 // listening
 const port = Number(process.env.PORT || sysCfg.port);
-app.listen(port);
+app.listen(port, '0.0.0.0')
+    .on('listening', () => {
+        console.log(`Listening on port: ${port}`);
+        console.log(`Api prefix: ${sysCfg.apiPrefix}`);
+    });

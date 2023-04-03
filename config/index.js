@@ -47,7 +47,6 @@ export const envCfg = (() => {
     process.exit();
   } else {
     console.log(`${name} 服务配置参数加载成功`);
-    console.log('envCfg:', conf);
     return conf;
   }
 })();
