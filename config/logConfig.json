@@ -32,68 +32,38 @@
       }
     },
     "acc": {
-      "type": "dateFile",
-      "filename": "log/acc/acc",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "300M",
-      "numBackups": 3,
+      "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
       }
     },
     "biz": {
-      "type": "dateFile",
-      "filename": "log/biz/biz",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "300M",
-      "numBackups": 3,
+      "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
       }
     },
     "debug": {
-      "type": "dateFile",
-      "filename": "log/app/debug",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "300M",
-      "numBackups": 3,
+      "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
       }
     },
     "warn": {
-      "type": "dateFile",
-      "filename": "log/app/warn",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "300M",
-      "numBackups": 3,
+      "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
       }
     },
     "error": {
-      "type": "dateFile",
-      "filename": "log/app/error",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "300M",
-      "numBackups": 3,
+      "type": "console",
       "layout": {
         "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+        "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss.SSS}] [%p]%] ~ %m"
       }
     }
   },
