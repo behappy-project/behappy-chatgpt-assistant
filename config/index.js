@@ -4,9 +4,9 @@ import {name} from '../package.json';
 // 配置自检
 export const envCfg = (() => {
   // 加载本地配置
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'local') {
-    console.log(`环境: ${process.env.NODE_ENV},加载本地开发环境`);
-
+  console.log(`环境: ${process.env.NODE_ENV}`);
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    console.log(`加载本地开发环境...`);
     if (existsSync(`${__dirname}/local.json`)) {
       const conf = require('./local.json');
       console.log(`${name} 服务配置参数加载成功`);

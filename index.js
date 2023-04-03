@@ -20,7 +20,7 @@ app.use(rest({
 // ctx.send
 app.use(resMsg());
 // ctx.openai
-app.use(openai({apiKey: envCfg.chatGpt.key}))
+app.use(openai({...envCfg.chatGpt}))
 
 // body parser
 app.use(koaBody({

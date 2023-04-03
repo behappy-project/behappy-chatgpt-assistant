@@ -2,4 +2,4 @@
 
 require = require('esm')(module);
 
-require('../app');
+require('../index');
