@@ -12,7 +12,7 @@ router.get('/models', async (ctx) => {
         ctx.send('Success', result.data.data);
     } catch (e) {
         ctx.log.error(e.stack);
-        ctx.send('CallServiceError');
+        ctx.send('CallServiceError',e.stack);
     }
 });
 
