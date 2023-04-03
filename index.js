@@ -11,12 +11,12 @@ import {openai} from "./lib/openai";
 const app = new Koa();
 
 // ctx.log
-app.use(logger(app.context, {appName: sysCfg.name}));
-// ctx.rest
-app.use(rest({
-    appName: sysCfg.name,
-    apiKey: envCfg.chatGpt.key
-}));
+// app.use(logger(app.context, {appName: sysCfg.name}));
+// // ctx.rest
+// app.use(rest({
+//     appName: sysCfg.name,
+//     apiKey: envCfg.chatGpt.key
+// }));
 // ctx.send
 app.use(resMsg());
 // ctx.openai
