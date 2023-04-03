@@ -22,5 +22,9 @@
   "PayloadTooLargeError": {
     "code": 4005,
     "msg": "PayloadTooLargeError"
+  },
+  "RequestTooManyError": {
+    "code": 4006,
+    "msg": "RequestTooManyError"
   }
 }

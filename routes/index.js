@@ -5,7 +5,7 @@ import Router from "koa-router";
 const router = Router();
 
 const index = router.get('/', async (ctx) => {
-  ctx.log.acc('success deploy...');
+  ctx.log.debug('success deploy...');
   ctx.send('Success');
 });
 
