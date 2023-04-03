@@ -3,6 +3,7 @@ import {name} from '../package.json';
 
 // 配置自检
 export const envCfg = (() => {
+  console.log(process.env)
   // 加载本地配置
   console.log(`环境: ${process.env.NODE_ENV}`);
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
