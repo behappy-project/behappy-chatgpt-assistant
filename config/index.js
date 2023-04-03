@@ -3,7 +3,6 @@ import {name} from '../package.json';
 
 // 配置自检
 export const envCfg = (() => {
-  console.log(process.env)
   // 加载本地配置
   console.log(`环境: ${process.env.NODE_ENV}`);
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
@@ -31,7 +30,13 @@ export const envCfg = (() => {
       }
 
       // 服务调用参数配置
-      cfgNode[pro] = process.env[cfgNode[pro]];
+      if (!process.env[cfgNode[pro]]) {
+        console.error(`参数: ${cfgNode[pro]} 未设置.`);
+        result = false;
+      } else {
+        cfgNode[pro] = process.env[cfgNode[pro]];
+        result = result && true;
+      }
     }
 
     return result;
