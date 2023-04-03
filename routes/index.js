@@ -3,10 +3,10 @@ import chat from './chatgpt/chat'
 import Router from "koa-router";
 import {sysCfg} from "../config";
 
-const router = Router({prefix: sysCfg.apiPrefix});
+const router = Router();
 
 const index = router.get('/', async (ctx) => {
-  ctx.log.info('success deploy...');
+  ctx.log.acc('success deploy...');
   ctx.send('Success');
 });
 export {
