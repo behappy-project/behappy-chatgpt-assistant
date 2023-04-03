@@ -1,5 +1,6 @@
 import models from './chatgpt/models'
 import chat from './chatgpt/chat'
+import image from './chatgpt/image'
 import Router from "koa-router";
 
 const router = Router();
@@ -12,5 +13,6 @@ const index = router.get('/', async (ctx) => {
 export {
   index,
   models,
-  chat
+  chat,
+  image
 };

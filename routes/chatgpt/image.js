@@ -3,22 +3,23 @@ import {sysCfg} from '../../config';
 
 const router = Router({prefix: sysCfg.apiPrefix});
 
-router.post('/completions', async (ctx) => {
+router.post('/imagesGenerations', async (ctx) => {
     const params = {...ctx.request.body};
-    ctx.log.debug(__filename, '[createChatCompletion] Request params:', params);
+    ctx.log.debug(__filename, '[imageGenerations] Request params:', params);
+    if (params.prompt.length >= 10) {
+        return ctx.send('QueryError', "图片描述超过限制");
+    }
     try {
-        const response = await ctx.openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [{
-                role: "user",
-                content: params.content
-            }],
+        const response  = await ctx.openai.createImage({
+            prompt: params.prompt,
+            n: 1,
+            size: "256x256",
         });
         if (response.status !== 200) {
             ctx.log.error(response.statusText)
             return ctx.send('QueryError', response.statusText);
         }
-        let result = response.data.choices[0].message;
+        let result = response.data.data[0].url;
         ctx.send('Success', result);
     } catch (e) {
         ctx.log.error(e.stack);
