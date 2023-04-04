@@ -6,6 +6,7 @@ import './lib/utils';
 import * as routes from './routes';
 import {sysCfg, envCfg} from "./config";
 import {openai} from "./lib/openai";
+import cors from '@koa/cors'
 
 const app = new Koa();
 
@@ -15,6 +16,8 @@ app.use(logger(app.context, {appName: sysCfg.name}));
 app.use(resMsg());
 // ctx.openai
 app.use(openai({...envCfg.chatGpt}))
+// cors
+app.use(cors())
 
 // body parser
 app.use(koaBody({
