@@ -1,29 +1,56 @@
-import Router from 'koa-router';
-import {sysCfg} from '../../config';
+module.exports = () => {
+    return async (ctx, next) => {
+        try {
+            ctx.websocket.on('message', async function (message) {
+                const params = message.toString()
+                if (!params || params.length === 0) {
+                    return
+                }
+                ctx.log.debug(__filename, '[createChatCompletion] Request params:', params);
 
-const router = Router({prefix: sysCfg.apiPrefix});
+                const streamResponse = await ctx.openai.createChatCompletion({
+                    model: "gpt-3.5-turbo",
+                    stream: true,
+                    messages: [{
+                        role: "user",
+                        content: params
+                    }],
+                }, {responseType: 'stream'});
 
-router.post('/completions', async (ctx) => {
-    const params = {...ctx.request.body};
-    ctx.log.debug(__filename, '[createChatCompletion] Request params:', params);
-    try {
-        const response = await ctx.openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [{
-                role: "user",
-                content: params.content
-            }],
-        });
-        if (response.status !== 200) {
-            ctx.log.error(response.statusText)
-            return ctx.send('QueryError', response.statusText);
+                if (streamResponse.status !== 200) {
+                    ctx.log.error(streamResponse.statusText)
+                    return ctx.websocket.send(streamResponse.statusText);
+                }
+                streamResponse.data.on('data', chunk => {
+                    const lines = chunk
+                        .toString()
+                        .split('\n')
+                        .filter((line) => line.trim().startsWith('data: '))
+                    for (const line of lines) {
+                        const message = line.replace(/^data: /, '')
+                        if (message === '[DONE]') {
+                            // 客户端判断输出内容是否是`[DONE]`
+                            ctx.log.debug('内容结束...')
+                            return
+                        }
+
+                        const json = JSON.parse(message)
+                        const token = json.choices[0].delta.content
+                        if (token) {
+                            ctx.log.debug('发送...', token)
+                            ctx.websocket.send(token)
+                        }
+                    }
+                })
+            });
+
+        } catch (e) {
+            ctx.log.error(e.message)
+            ctx.websocket.send(e.message)
+        } finally {
+            await next();
         }
-        let result = response.data.choices[0].message;
-        ctx.send('Success', result);
-    } catch (e) {
-        ctx.log.error(e.stack);
-        ctx.send('CallServiceError',e.stack);
-    }
-});
+    };
+};
 
-export default router;
+
