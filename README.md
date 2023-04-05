@@ -32,7 +32,7 @@
 ```json
 {
   "sys": {
-    "port": "3000"
+    "port": "4000"
   },
   "chatGpt": {
     "host": "https://api.openai.com/v1",
