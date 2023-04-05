@@ -1,23 +1,34 @@
 import Koa from 'koa';
 import koaBody from 'koa-body';
 import logger from './lib/log4j';
-import {resMsg} from './lib/response';
+import resMsg from './lib/response';
 import './lib/utils';
 import * as routes from './routes';
 import {sysCfg, envCfg} from "./config";
-import {openai} from "./lib/openai";
-import cors from '@koa/cors'
+import openai from "./lib/openai";
+import cors from '@koa/cors';
+import websockify from 'koa-websocket';
+import chat from "./routes/chatgpt/chat";
 
-const app = new Koa();
+const app = websockify(new Koa());
 
 // ctx.log
+app.ws.use(logger(app.context, {appName: sysCfg.name}));
+// ctx.openai
+app.ws.use(openai({...envCfg.chatGpt}))
+// websocket event
+app.ws.use(chat())
+// ctx.log
 app.use(logger(app.context, {appName: sysCfg.name}));
-// ctx.send
-app.use(resMsg());
 // ctx.openai
 app.use(openai({...envCfg.chatGpt}))
+// ctx.send
+app.use(resMsg());
 // cors
-app.use(cors())
+app.use(cors({
+    origin: '*',
+    credentials: true
+}))
 
 // body parser
 app.use(koaBody({
