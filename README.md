@@ -32,7 +32,7 @@
 ```json
 {
   "sys": {
-    "port": "3000"
+    "port": "4000"
   },
   "chatGpt": {
     "host": "https://api.openai.com/v1",
@@ -44,7 +44,8 @@
 
 
 ## 效果图
-![动画](https://user-images.githubusercontent.com/44340137/229539811-a7c20a8e-ae0a-42fc-aad9-010e666fb787.gif)
+![动画](https://user-images.githubusercontent.com/44340137/230083471-7e5d8506-a680-44bf-b4ff-9de4498bc238.gif)
+
 
 
 更新中。。。
