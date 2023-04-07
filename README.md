@@ -11,6 +11,8 @@
 - [x] 从开发到部署应用的文档梳理，希望后续可以帮助到一些人
   - blog：https://wang-xiaowu.github.io/posts/2a9d73ff/
   - 离线文档可在群内置顶获取
+- [ ] 谷歌插件
+- [ ] prompt优化 - 长期
 
 ## 版本要求
 > Nodejs >= 18.x
