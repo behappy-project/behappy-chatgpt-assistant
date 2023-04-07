@@ -1,6 +1,6 @@
 > 欢迎“一键三连[watch,fork,star]”
 > 
-> 如果有对该项目感兴趣的小伙伴，可以进群联系我，大家一起研究
+> 如果有对该项目感兴趣的小伙伴，可以联系我，大家一起研究
 ## 技术沟通群
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
