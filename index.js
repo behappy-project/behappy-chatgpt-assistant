@@ -8,7 +8,7 @@ import {sysCfg, envCfg} from "./config";
 import openai from "./lib/openai";
 import cors from '@koa/cors';
 import websockify from 'koa-websocket';
-import chat from "./routes/chatgpt/chat";
+import chat from "./lib/chat";
 
 const app = websockify(new Koa());
 
