@@ -14,6 +14,7 @@
   - blog：https://wang-xiaowu.github.io/posts/2a9d73ff/
   - 离线文档可在群内置顶获取
 - [ ] 谷歌插件
+- [ ] 语音功能
 - [ ] prompt优化 - 长期
 
 ## 版本要求
