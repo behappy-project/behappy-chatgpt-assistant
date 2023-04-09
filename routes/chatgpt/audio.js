@@ -3,7 +3,7 @@ import {sysCfg} from '../../config';
 
 const router = Router({prefix: sysCfg.apiPrefix});
 
-router.post('/images/generations', async (ctx) => {
+router.post('/audio/transcriptions', async (ctx) => {
     const params = {...ctx.request.body};
     ctx.log.debug(__filename, '[imageGenerations] Request params:', params);
     if (params.prompt.length >= 10) {
