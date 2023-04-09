@@ -12,6 +12,7 @@
 - [x] stream流式应答，实现打字机效果
 - [x] 从开发到部署应用的文档梳理，希望后续可以帮助到一些人
   - blog：https://wang-xiaowu.github.io/posts/2a9d73ff/
+  - 视频教程：https://www.bilibili.com/video/BV1ys4y1N7Nk/
   - 离线文档可在群内置顶获取
 - [ ] 谷歌插件
 - [ ] 语音功能
