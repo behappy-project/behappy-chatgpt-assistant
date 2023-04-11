@@ -1,0 +1,44 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    // 关闭驼峰命名规则(由于按照数据库的字段来定义属性)
+    "camelcase": "off",
+    // 关闭[禁止在对象中使用不必要的计算属性]
+    "no-useless-computed-key": "off",
+    // 关闭[禁止使用特定的语法]
+    "no-restricted-syntax": "off",
+    // 关闭[禁用 continue]
+    "no-continue": "off",
+    // 关闭[强制数组方法的回调函数中有 return 语句]
+    "consistent-return": "off",
+    // 关闭[强制在模块顶部调用]
+    "global-require": "off",
+    // 箭头函数的参数按需使用括号
+    "arrow-parens": [2, "as-needed", {"requireForBlockBody": true}],
+    // 永不[强制在大括号中使用一致的空格]
+    "object-curly-spacing": ["error", "never"],
+    // [强制连续空行的最大数量 2] [在文件的开头强制执行最大数量的连续空行 1]
+    "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 1}],
+    // [强制声明的缩进级别] [所有声明符应与第一个声明符对齐] [强制多行属性链的缩进]
+    "indent": ["error", 2, {"VariableDeclarator": "first", "SwitchCase": 1, "MemberExpression": "off"}],
+    // 允许修改函数参数
+    "no-param-reassign": "off",
+    // 允许在可能与比较操作符相混淆的地方使用箭头函数
+    "no-confusing-arrow": "off",
+    // 禁止标识符中有悬空下划线(仅允许ctx._app)
+    "no-underscore-dangle": ["error", {"allow":  ["_app"]}],
+    // 箭头函数返回赋值
+    "no-return-assign": "warn",
+    // 数组解构
+    "prefer-destructuring": "warn",
+    // ++
+    "no-plusplus": "off",
+    "guard-for-in": "off",
+    // function use before define
+    "no-use-before-define": "off"
+  }
+}

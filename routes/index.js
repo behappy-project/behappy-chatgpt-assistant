@@ -1,16 +1,16 @@
-import models from './chatgpt/models'
-import image from './chatgpt/image'
-import Router from "koa-router";
+import Router from 'koa-router';
+import models from './chatgpt/models';
+import image from './chatgpt/image';
 
 const router = Router();
 
-const index = router.get('/',async (ctx) => {
+const index = router.get('/', async (ctx) => {
   ctx.log.debug('success deploy...');
-  ctx.send('Success');
+  await ctx.render('index');
 });
 
 export {
   index,
   models,
-  image
+  image,
 };
