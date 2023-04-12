@@ -21,6 +21,10 @@
     "error": {
       "value": 40000,
       "colour": "red"
+    },
+    "sql": {
+      "value": 50000,
+      "colour": "grey"
     }
   },
   "appenders": {
@@ -32,35 +36,78 @@
       }
     },
     "acc": {
-      "type": "console",
+      "type": "dateFile",
+      "filename": "log/acc/acc",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
       "layout": {
         "type": "pattern",
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "biz": {
-      "type": "console",
+      "type": "dateFile",
+      "filename": "log/biz/biz",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
       "layout": {
         "type": "pattern",
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "debug": {
-      "type": "console",
+      "type": "dateFile",
+      "filename": "log/app/debug",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
       "layout": {
         "type": "pattern",
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "warn": {
-      "type": "console",
+      "type": "dateFile",
+      "filename": "log/app/warn",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
       "layout": {
         "type": "pattern",
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
     "error": {
-      "type": "console",
+      "type": "dateFile",
+      "filename": "log/app/error",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
+      }
+    },
+    "sql": {
+      "type": "dateFile",
+      "filename": "log/sql/sql",
+      "pattern": "yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress": true,
+      "maxLogSize": "50M",
+      "numBackups": 3,
       "layout": {
         "type": "pattern",
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
@@ -76,33 +123,39 @@
     },
     "acc": {
       "appenders": [
-        "acc"
+        "acc","console"
       ],
       "level": "acc"
     },
     "biz": {
       "appenders": [
-        "biz"
+        "biz","console"
       ],
       "level": "biz"
     },
     "debug": {
       "appenders": [
-        "debug"
+        "debug","console"
       ],
       "level": "debug"
     },
     "warn": {
       "appenders": [
-        "warn"
+        "warn","console"
       ],
       "level": "warn"
     },
     "error": {
       "appenders": [
-        "error"
+        "error","console"
       ],
       "level": "error"
+    },
+    "sql": {
+      "appenders": [
+        "sql","console"
+      ],
+      "level": "sql"
     }
   }
 }
