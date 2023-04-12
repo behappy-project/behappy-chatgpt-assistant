@@ -1,6 +1,7 @@
 import Router from 'koa-router';
 import models from './chatgpt/models';
 import image from './chatgpt/image';
+import audio from './chatgpt/audio';
 
 const router = Router();
 
@@ -13,4 +14,5 @@ export {
   index,
   models,
   image,
+  audio,
 };

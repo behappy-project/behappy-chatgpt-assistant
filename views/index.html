@@ -113,7 +113,7 @@
     });
     // 监听收到消息事件
     socket.addEventListener('message', (event) => {
-      console.log('收到服务器消息:', event.data);
+      // console.log('收到服务器消息:', event.data);
       // 处理sessionMsg，保证上下文
       if (event.data === '[DONE]') {
         // 说明是结尾
@@ -170,7 +170,7 @@
       msg = '';
       // 重置对话框
       setResult(msg);
-      if (type === 'text' && val.trim()) {
+      if (type === 'text' && val && val.trim()) {
         appendMsg({
           type: 'text',
           content: {text: val},
@@ -191,13 +191,21 @@
             },
             success: function (response) {
               console.log('请求成功，返回数据为：' + response);
-              appendMsg({
-                type: 'image',
-                content: {picUrl: response.data},
-              });
+              if (response.code === 0){
+                appendMsg({
+                  type: 'image',
+                  content: {picUrl: response.data},
+                });
+              }else {
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.error},
+                });
+              }
             },
             error: function (xhr, status, error) {
               console.log('请求失败，错误信息为：' + error);
+              toast.fail('请求失败，错误信息为：' + error);
             }
           });
         } else {
@@ -238,7 +246,10 @@
           recorder.start();
           stopRecoderFlag = false;
         })
-        .catch(console.error);
+        .catch((error) => {
+          console.log(error)
+          toast.fail('请求失败，错误信息为：' + error);
+        });
     }
 
     function stopRecording() {
@@ -260,6 +271,12 @@
     }
 
     function sendRecording() {
+      if (!recorder) {
+        return toast.show('请先录音！');
+      }
+      if (!stopRecoderFlag) {
+        return toast.show('请先停止录音！');
+      }
       fileReader.readAsArrayBuffer(recordBlob);
       // 释放
       URL.revokeObjectURL(recordBlob)
@@ -269,18 +286,35 @@
       // 获取转换后的ArrayBuffer
       const arrayBuffer = this.result;
       const uint8Array = new Uint8Array(arrayBuffer);
-
       // 将Uint8Array对象转换为base64编码的字符串
       const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
-      // console.log(base64String)
+      // 定义url
+      const url = baseUrl + '/audio/transcriptions';
       // 发送数据
-      socket.send(JSON.stringify({
-        type: 'audio',
+      $.ajax({
+        url: url,
+        type: 'POST',
         data: {
-          msg: base64String,
-          systemStyle
+          'msg': base64String,
+          'systemStyle': systemStyle
+        },
+        success: function (response) {
+          console.log('请求成功，返回数据为：' + JSON.stringify(response));
+          if (response.code === 0){
+            handleSend('text', response.data)
+          }else {
+            appendMsg({
+              type: 'text',
+              position: 'right',
+              content: {text: response.error},
+            });
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('请求失败，错误信息为：' + error);
+          toast.fail('请求失败，错误信息为：' + error);
         }
-      }));
+      });
     };
 
     function renderMessageContent(msg) {
