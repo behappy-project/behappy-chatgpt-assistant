@@ -1,6 +1,7 @@
 import Router from 'koa-router';
 import fs from 'fs';
 import {sysCfg} from '../../config';
+import {getSystemContent} from '../../lib/util';
 
 const router = Router({prefix: sysCfg.apiPrefix});
 
@@ -9,6 +10,8 @@ router.post('/audio/transcriptions', async (ctx) => {
   ctx.log.debug(__filename, '[audioTranscriptions] Request params:', params);
   try {
     const base64String = params.msg;
+    const {language} = params;
+    const systemContent = getSystemContent(params.systemStyle, language);
     const buffer = Buffer.from(base64String, 'base64');
     const fileName = `${sysCfg.savePoint}/${Date.now()}.mp3`;
     // 将Buffer对象写入到mp3文件中
@@ -16,6 +19,10 @@ router.post('/audio/transcriptions', async (ctx) => {
     const response = await ctx.openai.createTranscription(
       fs.createReadStream(fileName),
       'whisper-1',
+      systemContent,
+      'json',
+      0,
+      language,
     );
     if (response.status !== 200) {
       ctx.log.error(response.statusText);

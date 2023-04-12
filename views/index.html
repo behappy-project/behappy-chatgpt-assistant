@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://lib.baomitu.com/chatui-core/2.4.2/index.min.css">
     <script src="https://lib.baomitu.com/babel-standalone/7.18.13/babel.min.js"></script>
     <script src="https://g.alicdn.com/chatui/icons/0.3.0/index.js"></script>
+    <script src="/static/js/config.js"></script>
 
     <style type="text/css">html, body, #app {
         height: 100%
@@ -36,15 +37,17 @@
     CardText,
     CardActions,
     Button,
-    toast
+    toast,
+    Radio,
+    Input
   } = ChatUI;
-  const schema = 'http://';
-  const basePath = 'localhost:4000';
+
   const baseUrl = schema + basePath + '/chat-gpt';
   let sessionMsg = '';
   // 人设
   let systemStyle = 'normal';
   const App = () => {
+    const [recordLanguage, setRecordLanguage] = useState('zh');
     const [msgID, setMsgID] = useState('');
     const [result, setResult] = useState('');
     let msg = '';
@@ -296,7 +299,8 @@
         type: 'POST',
         data: {
           'msg': base64String,
-          'systemStyle': systemStyle
+          'systemStyle': systemStyle,
+          'language': recordLanguage
         },
         success: function (response) {
           console.log('请求成功，返回数据为：' + JSON.stringify(response));
@@ -337,6 +341,9 @@
           return (
             <div className="demo-btn">
               <h4>录音</h4>
+              <div>
+                <Input value={recordLanguage} onChange={val => setRecordLanguage(val)} autoSize placeholder="录音语言，具体值参考: List_of_ISO_639-1_codes" />
+              </div>
               <Button id="recordButton" onClick={startRecording}>开始录音</Button>
               <Button id="stopButton" onClick={stopRecording}>停止录音</Button>
               <Button id="playButton" onClick={playRecording}>播放录音</Button>
