@@ -47,7 +47,7 @@
 
 
 ## 效果图
-![动画](https://user-images.githubusercontent.com/44340137/230083471-7e5d8506-a680-44bf-b4ff-9de4498bc238.gif)
+![动画](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy-chatgpt-assistant.gif)
 
 
 
