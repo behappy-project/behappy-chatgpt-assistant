@@ -6,7 +6,7 @@ export const envCfg = (() => {
   // 加载本地配置
   console.log(`环境: ${process.env.NODE_ENV}`);
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    console.log(`加载本地开发环境...`);
+    console.log('加载本地开发环境...');
     if (existsSync(`${__dirname}/local.json`)) {
       const conf = require('./local.json');
       console.log(`${name} 服务配置参数加载成功`);
@@ -54,6 +54,7 @@ export const envCfg = (() => {
 export const sysCfg = {
   name,
   port: envCfg.sys.port,
+  savePoint: envCfg.sys.savePoint,
   apiPrefix: '/chat-gpt',
 };
 

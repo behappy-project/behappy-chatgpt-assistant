@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>BeHappy 智能助理</title>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/react/17.0.2/umd/react.development.min.js"></script>
+    <script src="https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.development.min.js"></script>
+    <script src="https://lib.baomitu.com/chatui-core/2.4.2/index.min.js"></script>
+    <link rel="stylesheet" href="https://lib.baomitu.com/chatui-core/2.4.2/index.min.css">
+    <script src="https://lib.baomitu.com/babel-standalone/7.18.13/babel.min.js"></script>
+    <script src="https://g.alicdn.com/chatui/icons/0.3.0/index.js"></script>
+    <script src="/static/js/config.js"></script>
+
+    <style type="text/css">html, body, #app {
+        height: 100%
+    }</style>
+</head>
+<body>
+<script type="text/babel">
+  const {
+    useState,
+    useEffect,
+    useCallback,
+    useRef
+  } = React;
+  const {
+    default: Chat,
+    Bubble,
+    useMessages,
+    Image,
+    Notice,
+    Card,
+    CardMedia,
+    CardTitle,
+    CardText,
+    CardActions,
+    Button,
+    toast,
+    Radio,
+    Input
+  } = ChatUI;
+
+  const baseUrl = schema + basePath + '/chat-gpt';
+  let sessionMsg = '';
+  // 人设
+  let systemStyle = 'normal';
+  const App = () => {
+    const [recordLanguage, setRecordLanguage] = useState('zh');
+    const [msgID, setMsgID] = useState('');
+    const [result, setResult] = useState('');
+    let msg = '';
+    const {
+      messages,
+      appendMsg,
+      setTyping,
+      updateMsg,
+      prependMsgs
+    } = useMessages([{
+      type: 'text',
+      content: {text: '主人好，我是 BeHappy 智能助理，你的贴心小助手~'},
+      user: {avatar: '/static/pic/bot.jpg'},
+    }]);
+    const msgRef = useRef(null);
+    window.appendMsg = appendMsg;
+    window.msgRef = msgRef;
+
+    let recorder;
+    let audio;
+    let stopRecoderFlag = true;
+    let recordBlob;
+    const fileReader = new FileReader();
+
+    const toolbar = [
+      {
+        type: 'image',
+        icon: 'image',
+        title: '相册',
+      },
+      {
+        type: 'speech',
+        icon: 'mic',
+        title: '语音输入'
+      }
+    ];
+    // 默认快捷短语，可选
+    const defaultQuickReplies = [
+      {
+        code: 'movie',
+        icon: 'message',
+        name: '聊电影',
+        isNew: true,
+        isHighlight: true,
+      },
+      {
+        code: 'cartoon',
+        icon: 'message',
+        name: '聊动漫',
+        isNew: true,
+        isHighlight: true,
+      }
+    ];
+    useEffect(() => {
+      // 监听result的改变，来实现打字机效果
+      updateMsg(msgID, {
+        type: 'text',
+        content: {text: result}
+      });
+    }, [result]);
+
+    const socket = new WebSocket('ws://' + basePath);
+    // 监听连接打开事件
+    socket.addEventListener('open', (event) => {
+      console.log('WebSocket 连接已打开');
+    });
+    // 监听收到消息事件
+    socket.addEventListener('message', (event) => {
+      // console.log('收到服务器消息:', event.data);
+      // 处理sessionMsg，保证上下文
+      if (event.data === '[DONE]') {
+        // 说明是结尾
+        sessionMsg += '\n';
+      } else {
+        msg += event.data;
+        setResult(msg);
+        sessionMsg += event.data;
+      }
+    });
+    // 监听连接关闭事件
+    socket.addEventListener('close', (event) => {
+      console.log('WebSocket 连接已关闭');
+    });
+
+    // 获取当前时间戳
+    function nanoid() {
+      return new Date().getTime()
+        .toString();
+    }
+
+    // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
+    function handleQuickReplyClick(item) {
+      systemStyle = item.code
+      toast.success(`当前选择人设：${item.name}`)
+    }
+
+    function renderBeforeMessageList() {
+      return <Notice
+        content="欢迎使用 BeHappy 智能助理，项目地址：https://github.com/behappy-project/behappy-chatgpt-assistant"
+      />;
+    }
+    function toolbarClick(item, ctx) {
+      if (item.type === 'image') {
+        // todo 图片解析
+        appendMsg({
+          type: 'text',
+          content: {text: '抱歉，该功能暂未实现'}
+        });
+      } else if (item.type === 'speech') {
+        appendMsg({
+          type: 'speech-type',
+          content: {}
+        });
+      }
+
+    }
+
+    function handleSend(type, val) {
+      // 先设置一个唯一的msgID
+      const msgID = nanoid();
+      setMsgID(msgID);
+      // 重置msg
+      msg = '';
+      // 重置对话框
+      setResult(msg);
+      if (type === 'text' && val && val.trim()) {
+        appendMsg({
+          type: 'text',
+          content: {text: val},
+          position: 'right',
+        });
+
+        setTyping(true);
+        // 判断是否以图片二字开头，然后以:进行分割取后半部分
+        if (val.startsWith('图片')) {
+          val = val.substr(3);
+          // 定义url
+          const url = baseUrl + '/images/generations';
+          $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+              'prompt': val
+            },
+            success: function (response) {
+              console.log('请求成功，返回数据为：' + response);
+              if (response.code === 0){
+                appendMsg({
+                  type: 'image',
+                  content: {picUrl: response.data},
+                });
+              }else {
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.error},
+                });
+              }
+            },
+            error: function (xhr, status, error) {
+              console.log('请求失败，错误信息为：' + error);
+              toast.fail('请求失败，错误信息为：' + error);
+            }
+          });
+        } else {
+          // 处理sessionMsg，保证上下文;
+          sessionMsg += '你: ' + val + '\nAI:';
+          appendMsg({
+            _id: msgID,
+            type: 'text',
+            content: {text: result},
+          });
+          socket.send(JSON.stringify({
+            type: 'message',
+            data: {
+              msg: sessionMsg,
+              systemStyle
+            }
+          }));
+        }
+
+      }
+    }
+
+    function startRecording() {
+      navigator.mediaDevices.getUserMedia({audio: true})
+        .then(stream => {
+          recorder = new MediaRecorder(stream);
+          audio = new Audio();
+          const chunks = [];
+
+          recorder.ondataavailable = e => {
+            chunks.push(e.data);
+          };
+
+          recorder.onstop = () => {
+            recordBlob = new Blob(chunks, {type: 'audio/mp3'});
+            audio.src = URL.createObjectURL(recordBlob);
+          };
+          recorder.start();
+          stopRecoderFlag = false;
+        })
+        .catch((error) => {
+          console.log(error)
+          toast.fail('请求失败，错误信息为：' + error);
+        });
+    }
+
+    function stopRecording() {
+      if (!recorder || stopRecoderFlag) {
+        return toast.show('请先录音！');
+      }
+      recorder.stop();
+      stopRecoderFlag = true;
+    }
+
+    function playRecording() {
+      if (!recorder) {
+        return toast.show('请先录音！');
+      }
+      if (!stopRecoderFlag) {
+        return toast.show('请先停止录音！');
+      }
+      audio.play();
+    }
+
+    function sendRecording() {
+      if (!recorder) {
+        return toast.show('请先录音！');
+      }
+      if (!stopRecoderFlag) {
+        return toast.show('请先停止录音！');
+      }
+      fileReader.readAsArrayBuffer(recordBlob);
+      // 释放
+      URL.revokeObjectURL(recordBlob)
+    }
+
+    fileReader.onload = function () {
+      // 获取转换后的ArrayBuffer
+      const arrayBuffer = this.result;
+      const uint8Array = new Uint8Array(arrayBuffer);
+      // 将Uint8Array对象转换为base64编码的字符串
+      const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+      // 定义url
+      const url = baseUrl + '/audio/transcriptions';
+      // 发送数据
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          'msg': base64String,
+          'systemStyle': systemStyle,
+          'language': recordLanguage
+        },
+        success: function (response) {
+          console.log('请求成功，返回数据为：' + JSON.stringify(response));
+          if (response.code === 0){
+            handleSend('text', response.data)
+          }else {
+            appendMsg({
+              type: 'text',
+              position: 'right',
+              content: {text: response.error},
+            });
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('请求失败，错误信息为：' + error);
+          toast.fail('请求失败，错误信息为：' + error);
+        }
+      });
+    };
+
+    function renderMessageContent(msg) {
+      const {
+        type,
+        content
+      } = msg;
+
+      // 根据消息类型来渲染
+      switch (type) {
+        case 'text':
+          return <Bubble content={content.text}/>;
+        case 'image':
+          return (
+            <Bubble type="image">
+              <img src={content.picUrl} alt=""/>
+            </Bubble>
+          );
+        case 'speech-type':
+          return (
+            <div className="demo-btn">
+              <h4>录音</h4>
+              <div>
+                <Input value={recordLanguage} onChange={val => setRecordLanguage(val)} autoSize placeholder="录音语言，具体值参考: List_of_ISO_639-1_codes" />
+              </div>
+              <Button id="recordButton" onClick={startRecording}>开始录音</Button>
+              <Button id="stopButton" onClick={stopRecording}>停止录音</Button>
+              <Button id="playButton" onClick={playRecording}>播放录音</Button>
+              <Button id="sendButton" color="primary" onClick={sendRecording}>发送录音</Button>
+            </div>
+          );
+        default:
+          return null;
+      }
+    }
+
+    return (
+      <Chat
+        renderBeforeMessageList={renderBeforeMessageList}
+        navbar={{
+          leftContent: {
+            icon: 'chevron-left',
+            title: 'Back'
+          },
+          rightContent: [
+            {
+              icon: 'apps',
+              title: '暂未实现'
+            },
+            {
+              icon: 'ellipsis-h',
+              title: '暂未实现'
+            }
+          ],
+          title: 'BeHappy 智能助理'
+        }}
+        messages={messages}
+        renderMessageContent={renderMessageContent}
+        quickReplies={defaultQuickReplies}
+        onQuickReplyClick={handleQuickReplyClick}
+        onSend={handleSend}
+        placeholder={'请输入...'}
+        toolbar={toolbar}
+        onToolbarClick={toolbarClick}
+        messagesRef={msgRef}
+        wideBreakpoint="600px"
+        onImageSend={() => Promise.resolve()}
+      />
+    );
+  };
+
+  ReactDOM.render(<App/>, document.querySelector('#app'));
+</script>
+<div id="app"></div>

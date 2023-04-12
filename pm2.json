@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "behappy-chatgpt-assistant",
+      "script": "bin/run",
+      "instances": 1,
+      "exec_mode": "fork",
+      "node_args": [
+        "--max-http-header-size=65535"
+      ],
+      "error_file": "/dev/null",
+      "out_file": "/dev/null",
+      "pid_file": "/dev/null"
+    }
+  ]
+}

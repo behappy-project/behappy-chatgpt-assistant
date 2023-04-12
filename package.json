@@ -1,14 +1,19 @@
 {
   "name": "behappy-chatgpt-assistant",
-  "version": "0.0.4",
+  "description": "BeHappy 智能助理",
+  "version": "0.0.5",
   "author": {
     "email": "wangxiaowu950330@foxmail.com",
     "name": "xiaowu"
   },
+  "keywords": [
+    "koa",
+    "chatGpt"
+  ],
   "private": true,
   "scripts": {
     "start": "node bin/run",
-    "build": "node bin/run",
+    "pm2": "pm2 start pm2.json",
     "eslint": "./node_modules/.bin/eslint ./"
   },
   "license": "MIT",
@@ -16,14 +21,17 @@
     "@koa/cors": "^4.0.0",
     "@vercel/node": "^2.10.2",
     "axios": "^0.21.1",
+    "esm": "^3.2.25",
     "form-data": "^2.3.2",
     "fs": "0.0.1-security",
     "koa": "^2.13.4",
     "koa-body": "4.2.0",
     "koa-router": "^12.0.0",
+    "koa-views": "^8.0.0",
     "koa-websocket": "^7.0.0",
     "lodash": "^4.17.21",
     "log4js": "^6.3.0",
+    "mime": "^3.0.0",
     "moment": "^2.29.4",
     "openai": "^3.2.1",
     "tunnel": "^0.0.6"
@@ -31,7 +39,6 @@
   "devDependencies": {
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.23.4",
-    "esm": "^3.2.25"
+    "eslint-plugin-import": "^2.23.4"
   }
 }

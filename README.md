@@ -5,15 +5,15 @@
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
 ## TODO
-- [x] 部署Vercel
-- [x] 购买域名，解决 Vercel 在国内无法访问的问题
 - [x] 图片功能
-- [x] prompt优化，联系上下文
+- [x] 语音功能
+- [x] 上下文联系
 - [x] stream流式应答，实现打字机效果
 - [x] 从开发到部署应用的文档梳理，希望后续可以帮助到一些人
   - blog：https://wang-xiaowu.github.io/posts/2a9d73ff/
   - 视频教程：https://www.bilibili.com/video/BV1ys4y1N7Nk/
   - 离线文档可在群内置顶获取
+- [ ] Fine-tune
 - [ ] 谷歌插件
 - [ ] 语音功能
 - [ ] prompt优化 - 长期
@@ -28,19 +28,13 @@
 - 希望应答图片的话，发送方需要以`图片:`开头，祥见效果图
 
 ## 开发
-### 桌面端
-- clone桌面端仓库，地址：https://github.com/behappy-project/behappy-chatgpt-aardio
-- 下载aardio：https://www.aardio.com/
-- 直接双击`main.aardio`进入，点击运行即可
-
-
-### 服务端
 - clone当前仓库地址
 - 新建文件，路径：config/local.json，内容如下：
 ```json
 {
   "sys": {
-    "port": "4000"
+    "port": "4000",
+    "savePoint": "D://"
   },
   "chatGpt": {
     "host": "https://api.openai.com/v1",
@@ -48,7 +42,8 @@
   }
 }
 ```
-- 国内访问需要配置proxy，详见代码lib/openai.js-15行
+- 境内访问需要配置proxy，详见代码lib/openai.js-15行
+- 执行 npm run start
 
 
 ## 效果图

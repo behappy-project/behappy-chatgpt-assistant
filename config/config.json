@@ -1,6 +1,7 @@
 {
   "sys": {
-    "port": "SYS_PORT"
+    "port": "SYS_PORT",
+    "savePoint": "SYS_SAVE_POINT"
   },
   "chatGpt": {
     "host": "CHAT_GPT_HOST",
