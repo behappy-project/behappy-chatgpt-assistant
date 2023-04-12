@@ -21,7 +21,7 @@
 ## 版本要求
 > Nodejs >= 18.x
 
-## ChatGPT 桌面助理
+## BeHappy 智能助理
 - 提供exe程序，直接下载，无需安装即可使用
 - 内置openAPI key
 - 无需代理，可供国内用户访问
