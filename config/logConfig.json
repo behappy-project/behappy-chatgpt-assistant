@@ -114,7 +114,7 @@
       "appenders": [
         "info","console"
       ],
-      "level": "biz"
+      "level": "info"
     },
     "debug": {
       "appenders": [
