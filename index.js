@@ -34,7 +34,7 @@ app.use(cors({
 
 // 生产环境静态文件放在nginx下
 if (sysCfg.nodeEnv !== 'production') {
-  app.use(staticFiles('/static/', `${__dirname}/static`));
+  app.use(staticFiles(`${sysCfg.apiPrefix}/static/`, `${__dirname}/static`));
   app.use(koaViews(path.join(__dirname, 'views/'), {extension: 'html'}));
 }
 
