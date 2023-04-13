@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 import {sysCfg} from '../../config';
 
-const router = Router({prefix: sysCfg.apiPrefix});
+const router = Router({prefix: `${sysCfg.apiPrefix}/api`});
 
 router.post('/images/generations', async (ctx) => {
   const params = {...ctx.request.body};
