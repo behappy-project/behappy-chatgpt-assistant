@@ -37,7 +37,7 @@
     },
     "acc": {
       "type": "dateFile",
-      "filename": "log/acc/acc",
+      "filename": "/var/log/gpt/acc/acc",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -50,7 +50,7 @@
     },
     "biz": {
       "type": "dateFile",
-      "filename": "log/biz/biz",
+      "filename": "/var/log/gpt/biz/biz",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -63,7 +63,7 @@
     },
     "debug": {
       "type": "dateFile",
-      "filename": "log/app/debug",
+      "filename": "/var/log/gpt/app/debug",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -76,7 +76,7 @@
     },
     "warn": {
       "type": "dateFile",
-      "filename": "log/app/warn",
+      "filename": "/var/log/gpt/app/warn",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -89,7 +89,7 @@
     },
     "error": {
       "type": "dateFile",
-      "filename": "log/app/error",
+      "filename": "/var/log/gpt/app/error",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -102,7 +102,7 @@
     },
     "sql": {
       "type": "dateFile",
-      "filename": "log/sql/sql",
+      "filename": "/var/log/gpt/sql/sql",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,

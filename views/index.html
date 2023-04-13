@@ -4,14 +4,14 @@
     <meta charset="utf-8"/>
     <title>BeHappy 智能助理</title>
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://lib.baomitu.com/react/17.0.2/umd/react.development.min.js"></script>
-    <script src="https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.development.min.js"></script>
-    <script src="https://lib.baomitu.com/chatui-core/2.4.2/index.min.js"></script>
-    <link rel="stylesheet" href="https://lib.baomitu.com/chatui-core/2.4.2/index.min.css">
-    <script src="https://lib.baomitu.com/babel-standalone/7.18.13/babel.min.js"></script>
-    <script src="https://g.alicdn.com/chatui/icons/0.3.0/index.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/react.development.min.js"></script>
+    <script src="/static/js/react-dom.development.min.js"></script>
+    <script src="/static/js/chatui-core.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.min.css">
+    <script src="/static/js/babel.min.js"></script>
     <script src="/static/js/config.js"></script>
+    <script src="/static/js/chatui-icon.js"></script>
 
     <style type="text/css">html, body, #app {
         height: 100%
@@ -41,8 +41,6 @@
     Radio,
     Input
   } = ChatUI;
-
-  const baseUrl = schema + basePath + '/chat-gpt';
   let sessionMsg = '';
   // 人设
   let systemStyle = 'normal';
@@ -109,14 +107,18 @@
       });
     }, [result]);
 
-    const socket = new WebSocket('ws://' + basePath);
+    const socket = new WebSocket('ws://' + websocketPath);
     // 监听连接打开事件
     socket.addEventListener('open', (event) => {
-      console.log('WebSocket 连接已打开');
+      if (environment !== 'production') {
+        console.log('WebSocket 连接已打开');
+      }
     });
     // 监听收到消息事件
     socket.addEventListener('message', (event) => {
-      // console.log('收到服务器消息:', event.data);
+      if (environment !== 'production') {
+        console.log('收到服务器消息:', event.data);
+      }
       // 处理sessionMsg，保证上下文
       if (event.data === '[DONE]') {
         // 说明是结尾
@@ -129,7 +131,9 @@
     });
     // 监听连接关闭事件
     socket.addEventListener('close', (event) => {
-      console.log('WebSocket 连接已关闭');
+      if (environment !== 'production') {
+        console.log('WebSocket 连接已关闭');
+      }
     });
 
     // 获取当前时间戳
@@ -140,8 +144,8 @@
 
     // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
     function handleQuickReplyClick(item) {
-      systemStyle = item.code
-      toast.success(`当前选择人设：${item.name}`)
+      systemStyle = item.code;
+      toast.success(`当前选择人设：${item.name}`);
     }
 
     function renderBeforeMessageList() {
@@ -149,6 +153,7 @@
         content="欢迎使用 BeHappy 智能助理，项目地址：https://github.com/behappy-project/behappy-chatgpt-assistant"
       />;
     }
+
     function toolbarClick(item, ctx) {
       if (item.type === 'image') {
         // todo 图片解析
@@ -193,13 +198,15 @@
               'prompt': val
             },
             success: function (response) {
-              console.log('请求成功，返回数据为：' + response);
-              if (response.code === 0){
+              if (environment !== 'production') {
+                console.log('请求成功，返回数据为：' + response);
+              }
+              if (response.code === 0) {
                 appendMsg({
                   type: 'image',
                   content: {picUrl: response.data},
                 });
-              }else {
+              } else {
                 appendMsg({
                   type: 'text',
                   content: {text: response.error},
@@ -207,7 +214,9 @@
               }
             },
             error: function (xhr, status, error) {
-              console.log('请求失败，错误信息为：' + error);
+              if (environment !== 'production') {
+                console.log('请求失败，错误信息为：' + error);
+              }
               toast.fail('请求失败，错误信息为：' + error);
             }
           });
@@ -234,6 +243,7 @@
     function startRecording() {
       navigator.mediaDevices.getUserMedia({audio: true})
         .then(stream => {
+          toast.success('已开始录音...');
           recorder = new MediaRecorder(stream);
           audio = new Audio();
           const chunks = [];
@@ -250,7 +260,9 @@
           stopRecoderFlag = false;
         })
         .catch((error) => {
-          console.log(error)
+          if (environment !== 'production') {
+            console.log(error);
+          }
           toast.fail('请求失败，错误信息为：' + error);
         });
     }
@@ -259,6 +271,7 @@
       if (!recorder || stopRecoderFlag) {
         return toast.show('请先录音！');
       }
+      toast.success('录音结束...');
       recorder.stop();
       stopRecoderFlag = true;
     }
@@ -270,6 +283,7 @@
       if (!stopRecoderFlag) {
         return toast.show('请先停止录音！');
       }
+      toast.success('开始播放录音...');
       audio.play();
     }
 
@@ -282,10 +296,11 @@
       }
       fileReader.readAsArrayBuffer(recordBlob);
       // 释放
-      URL.revokeObjectURL(recordBlob)
+      URL.revokeObjectURL(recordBlob);
     }
 
     fileReader.onload = function () {
+      toast.success('发送录音中...');
       // 获取转换后的ArrayBuffer
       const arrayBuffer = this.result;
       const uint8Array = new Uint8Array(arrayBuffer);
@@ -303,10 +318,12 @@
           'language': recordLanguage
         },
         success: function (response) {
-          console.log('请求成功，返回数据为：' + JSON.stringify(response));
-          if (response.code === 0){
-            handleSend('text', response.data)
-          }else {
+          if (environment !== 'production') {
+            console.log('请求成功，返回数据为：' + JSON.stringify(response));
+          }
+          if (response.code === 0) {
+            handleSend('text', response.data);
+          } else {
             appendMsg({
               type: 'text',
               position: 'right',
@@ -315,7 +332,9 @@
           }
         },
         error: function (xhr, status, error) {
-          console.log('请求失败，错误信息为：' + error);
+          if (environment !== 'production') {
+            console.log('请求失败，错误信息为：' + error);
+          }
           toast.fail('请求失败，错误信息为：' + error);
         }
       });
@@ -342,7 +361,8 @@
             <div className="demo-btn">
               <h4>录音</h4>
               <div>
-                <Input value={recordLanguage} onChange={val => setRecordLanguage(val)} autoSize placeholder="录音语言，具体值参考: List_of_ISO_639-1_codes" />
+                <Input value={recordLanguage} onChange={val => setRecordLanguage(val)} autoSize
+                       placeholder="录音语言，具体值参考: List_of_ISO_639-1_codes"/>
               </div>
               <Button id="recordButton" onClick={startRecording}>开始录音</Button>
               <Button id="stopButton" onClick={stopRecording}>停止录音</Button>

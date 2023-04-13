@@ -32,9 +32,11 @@ app.use(cors({
   credentials: true,
 }));
 
-// static file support:
-app.use(staticFiles('/static/', `${__dirname}/static`));
-app.use(koaViews(path.join(__dirname, 'views/'), {extension: 'html'}));
+// 生产环境静态文件放在nginx下
+if (sysCfg.nodeEnv !== 'production') {
+  app.use(staticFiles('/static/', `${__dirname}/static`));
+  app.use(koaViews(path.join(__dirname, 'views/'), {extension: 'html'}));
+}
 
 // body parser
 app.use(koaBody({

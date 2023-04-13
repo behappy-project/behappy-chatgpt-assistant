@@ -56,5 +56,6 @@ export const sysCfg = {
   port: envCfg.sys.port,
   savePoint: envCfg.sys.savePoint,
   apiPrefix: '/chat-gpt',
+  nodeEnv: process.env.NODE_ENV,
 };
 

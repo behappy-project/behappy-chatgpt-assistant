@@ -1,3 +1,4 @@
 /* eslint-disable */
-const schema = 'http://';
-const basePath = 'localhost:4000';
+const baseUrl = 'http://localhost:4000/chat-gpt';
+const websocketPath = 'localhost:4000';
+const environment = 'development';

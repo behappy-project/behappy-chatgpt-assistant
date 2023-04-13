@@ -1,3 +1,4 @@
+/* eslint-disable */
 (function(doc) {
   var id = '__CHATUI_ICONS__';
   var svgSprite =
