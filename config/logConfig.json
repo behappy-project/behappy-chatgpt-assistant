@@ -4,15 +4,15 @@
   "levels": {
     "acc": {
       "value": 5000,
-      "colour": "green"
+      "colour": "blue"
     },
-    "biz": {
-      "value": 10000,
-      "colour": "cyan"
+    "info": {
+      "value": 50000,
+      "colour": "green"
     },
     "debug": {
       "value": 20000,
-      "colour": "blue"
+      "colour": "cyan"
     },
     "warn": {
       "value": 30000,
@@ -21,10 +21,6 @@
     "error": {
       "value": 40000,
       "colour": "red"
-    },
-    "sql": {
-      "value": 50000,
-      "colour": "grey"
     }
   },
   "appenders": {
@@ -38,19 +34,6 @@
     "acc": {
       "type": "dateFile",
       "filename": "/var/log/gpt/acc/acc",
-      "pattern": "yyyy-MM-dd.log",
-      "alwaysIncludePattern": true,
-      "compress": true,
-      "maxLogSize": "50M",
-      "numBackups": 3,
-      "layout": {
-        "type": "pattern",
-        "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
-      }
-    },
-    "biz": {
-      "type": "dateFile",
-      "filename": "/var/log/gpt/biz/biz",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -100,9 +83,9 @@
         "pattern": "%d{yyyy-MM-dd hh:mm:ss.SSS} ~ %m"
       }
     },
-    "sql": {
+    "info": {
       "type": "dateFile",
-      "filename": "/var/log/gpt/sql/sql",
+      "filename": "/var/log/gpt/app/info",
       "pattern": "yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress": true,
@@ -127,9 +110,9 @@
       ],
       "level": "acc"
     },
-    "biz": {
+    "info": {
       "appenders": [
-        "biz","console"
+        "info","console"
       ],
       "level": "biz"
     },
@@ -150,12 +133,6 @@
         "error","console"
       ],
       "level": "error"
-    },
-    "sql": {
-      "appenders": [
-        "sql","console"
-      ],
-      "level": "sql"
     }
   }
 }
