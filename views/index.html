@@ -228,13 +228,21 @@
             type: 'text',
             content: {text: result},
           });
-          socket.send(JSON.stringify({
-            type: 'message',
-            data: {
-              msg: sessionMsg,
-              systemStyle
-            }
-          }));
+          // CONNECTING：值为0，表示正在连接；
+          // OPEN：值为1，表示连接成功，可以通信了；
+          // CLOSING：值为2，表示连接正在关闭；
+          // CLOSED：值为3，表示连接已经关闭，或者打开连接失败。
+          if (socket.readyState===1) {
+            socket.send(JSON.stringify({
+              type: 'message',
+              data: {
+                msg: sessionMsg,
+                systemStyle
+              }
+            }));
+          }else{
+            toast.show('Socket连接中,如长时间无法连接请刷新...')
+          }
         }
 
       }
@@ -404,7 +412,7 @@
         toolbar={toolbar}
         onToolbarClick={toolbarClick}
         messagesRef={msgRef}
-        wideBreakpoint="600px"
+        wideBreakpoint="900px"
         onImageSend={() => Promise.resolve()}
       />
     );
