@@ -2,7 +2,7 @@
 > 
 > 如果有对该项目感兴趣的小伙伴，可以联系我，大家一起研究
 > 
-> 体验地址：http://www.wang-xiaowu.site/chat-gpt/
+> 体验地址：http://www.wang-xiaowu.site/chat-gpt
 ## 技术沟通群
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
