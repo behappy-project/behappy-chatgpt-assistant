@@ -115,7 +115,8 @@
       });
     }, [result]);
     const socket = io('ws://' + baseLocation, {
-      path: websocketPath
+      path: websocketPath,
+      transports: ['polling']
     });
     // 连接状态
     socket.on('connect', () => {
