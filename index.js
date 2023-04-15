@@ -1,29 +1,17 @@
 import Koa from 'koa';
 import koaBody from 'koa-body';
 import cors from '@koa/cors';
-import websockify from 'koa-websocket';
 import koaViews from 'koa-views';
 import * as path from 'path';
-import logger from './lib/log4j';
+import * as http from 'http';
+import {Server} from 'socket.io';
 import resMsg from './lib/response';
 import * as routes from './routes';
-import {sysCfg, envCfg} from './config';
-import openai from './lib/openai';
-import chat from './lib/chat';
+import {sysCfg, serverCfg} from './config';
 import staticFiles from './lib/static-files';
+import Chat from './lib/chat';
 
-const app = websockify(new Koa());
-
-// ctx.log
-app.ws.use(logger(app.context, {appName: sysCfg.name}));
-// ctx.openai
-app.ws.use(openai({...envCfg.chatGpt}));
-// websocket event
-app.ws.use(chat());
-// ctx.log
-app.use(logger(app.context, {appName: sysCfg.name}));
-// ctx.openai
-app.use(openai({...envCfg.chatGpt}));
+const app = new Koa();
 // ctx.send
 app.use(resMsg());
 // cors
@@ -47,21 +35,37 @@ app.use(koaBody({
 }));
 
 // routes
-Object.keys(routes).forEach((k) => {
-  app.use(routes[k].routes())
-        .use(routes[k].allowedMethods());
-});
+Object.keys(routes)
+  .forEach((k) => {
+    app.use(routes[k].routes())
+      .use(routes[k].allowedMethods());
+  });
 
+const server = http.createServer(app.callback());
+const io = new Server(server);
+io.on('connection', (socket) => {
+  // 监听客户端发送的消息
+  socket.on('reqMsgEvent', async (message) => {
+    const params = JSON.parse(message);
+    if (!params) {
+      return;
+    }
+    // 发送消息到客户端
+    await Chat.messageEvent(params, socket);
+  });
+  socket.on('disconnect', () => {
+    console.debug('Client disconnected!');
+  });
+});
 // error handler
-app.on('error', async (err, ctx) => {
+server.on('error', async (err, ctx) => {
   ctx.status = 500;
-  ctx.log.error('×××××× System error:', err.stack);
+  serverCfg.log.error('×××××× System error:', err.stack);
 });
-
 // listening
 const port = Number(sysCfg.port);
-app.listen(port, '0.0.0.0')
-    .on('listening', () => {
-      console.log(`Listening on port: ${port}`);
-      console.log(`Api prefix: ${sysCfg.apiPrefix}`);
-    });
+server.listen(port, '0.0.0.0')
+  .on('listening', () => {
+    console.log(`Listening on port: ${port}`);
+    console.log(`Api prefix: ${sysCfg.apiPrefix}`);
+  });

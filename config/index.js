@@ -1,5 +1,7 @@
 import {existsSync} from 'fs';
 import {name} from '../package.json';
+import Openai from '../lib/openai';
+import Logger from '../lib/log4j';
 
 // 配置自检
 export const envCfg = (() => {
@@ -59,3 +61,8 @@ export const sysCfg = {
   nodeEnv: process.env.NODE_ENV,
 };
 
+export const serverCfg = (() => {
+  this.openai = new Openai({...envCfg.chatGpt}).openai;
+  this.log = new Logger({appName: sysCfg.name});
+  return this;
+})();
