@@ -50,6 +50,7 @@ io.on('connection', (socket) => {
     if (!params) {
       return;
     }
+    serverCfg.log.debug('[messageEvent] Request params:', params);
     // 发送消息到客户端
     await Chat.messageEvent(params, socket);
   });

@@ -1,4 +1,5 @@
 /* eslint-disable */
-const baseUrl = 'http://localhost:4000/chat-gpt/api';
-const websocketPath = 'localhost:4000';
+const baseLocation = 'localhost:4000';
+const baseUrl = `http://${baseLocation}/chat-gpt/api`;
+const websocketPath = '/socket.io';
 const environment = 'development';
