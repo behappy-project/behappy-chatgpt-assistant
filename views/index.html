@@ -5,6 +5,7 @@
     <title>BeHappy 智能助理</title>
 
     <script src="/chat-gpt/static/js/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
     <script src="/chat-gpt/static/js/react.development.min.js"></script>
     <script src="/chat-gpt/static/js/react-dom.development.min.js"></script>
     <script src="/chat-gpt/static/js/chatui-core.min.js"></script>
@@ -46,7 +47,7 @@
   let systemStyle = 'normal';
   const App = () => {
     const [recordLanguage, setRecordLanguage] = useState('zh');
-    const [msgID, setMsgID] = useState('');
+    const [msgID, setMsgID] = useState('1');
     const [result, setResult] = useState('');
     let msg = '';
     const {
@@ -97,6 +98,13 @@
         name: '聊动漫',
         isNew: true,
         isHighlight: true,
+      },
+      {
+        code: 'computer',
+        icon: 'message',
+        name: '聊计算机技术',
+        isNew: true,
+        isHighlight: true,
       }
     ];
     useEffect(() => {
@@ -106,33 +114,27 @@
         content: {text: result}
       });
     }, [result]);
-
-    const socket = new WebSocket('ws://' + websocketPath);
-    // 监听连接打开事件
-    socket.addEventListener('open', (event) => {
+    const socket = io('ws://' + websocketPath);
+    // 连接状态
+    socket.on('connect', () => {
       if (environment !== 'production') {
-        console.log('WebSocket 连接已打开');
+        console.log('connected? ', socket.connected); // true
+        console.log('disconnected? ', socket.disconnected); // true
       }
     });
     // 监听收到消息事件
-    socket.addEventListener('message', (event) => {
+    socket.on('resMsgEvent', (data) => {
       if (environment !== 'production') {
-        console.log('收到服务器消息:', event.data);
+        console.log('收到服务器消息:', data);
       }
       // 处理sessionMsg，保证上下文
-      if (event.data === '[DONE]') {
+      if (data === '[DONE]') {
         // 说明是结尾
         sessionMsg += '\n';
       } else {
-        msg += event.data;
+        msg += data;
         setResult(msg);
-        sessionMsg += event.data;
-      }
-    });
-    // 监听连接关闭事件
-    socket.addEventListener('close', (event) => {
-      if (environment !== 'production') {
-        console.log('WebSocket 连接已关闭');
+        sessionMsg += data;
       }
     });
 
@@ -228,20 +230,17 @@
             type: 'text',
             content: {text: result},
           });
-          // CONNECTING：值为0，表示正在连接；
-          // OPEN：值为1，表示连接成功，可以通信了；
-          // CLOSING：值为2，表示连接正在关闭；
-          // CLOSED：值为3，表示连接已经关闭，或者打开连接失败。
-          if (socket.readyState===1) {
-            socket.send(JSON.stringify({
-              type: 'message',
-              data: {
-                msg: sessionMsg,
-                systemStyle
+          if (socket.connected) {
+            socket.emit('reqMsgEvent', JSON.stringify({
+              msg: sessionMsg,
+              systemStyle
+            }), (response) => {
+              if (environment !== 'production') {
+                console.log(response);
               }
-            }));
-          }else{
-            toast.show('Socket连接中,如长时间无法连接请刷新...')
+            });
+          } else {
+            toast.show('Socket连接中,如长时间无法连接请刷新...');
           }
         }
 
