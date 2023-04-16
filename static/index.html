@@ -114,8 +114,10 @@
         content: {text: result}
       });
     }, [result]);
-    const socket = io('ws://' + baseLocation, {
-      path: websocketPath
+    const socket = io(baseUrl, {
+      path: websocketPath,
+      transports: ['websocket'],
+      pingTimeout: 60000,
     });
     // 连接状态
     socket.on('connect', () => {
@@ -243,6 +245,7 @@
             });
           } else {
             toast.show('Socket连接中,如长时间无法连接请刷新...');
+            socket.connect();
           }
         }
 

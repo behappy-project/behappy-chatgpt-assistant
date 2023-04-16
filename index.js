@@ -42,7 +42,11 @@ Object.keys(routes)
   });
 
 const server = http.createServer(app.callback());
-const io = new Server(server);
+const io = new Server(server, {
+  transports: ['websocket'],
+  allowUpgrades: false,
+  pingTimeout: 60000,
+});
 io.on('connection', (socket) => {
   // 监听客户端发送的消息
   socket.on('reqMsgEvent', async (message) => {
@@ -54,8 +58,8 @@ io.on('connection', (socket) => {
     // 发送消息到客户端
     await Chat.messageEvent(params, socket);
   });
-  socket.on('disconnect', () => {
-    console.debug('Client disconnected!');
+  socket.on('disconnect', (reason) => {
+    serverCfg.log.error('Client disconnected! ', reason);
   });
 });
 // error handler
@@ -67,5 +71,5 @@ server.on('error', async (err, ctx) => {
 const port = Number(sysCfg.port);
 server.listen(port, '0.0.0.0')
   .on('listening', () => {
-    console.log(`Listening on port: ${port}`);
+    serverCfg.log.info(`Listening on port: ${port}`);
   });
