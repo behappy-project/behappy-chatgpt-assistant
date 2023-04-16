@@ -3,7 +3,7 @@ import fs from 'fs';
 import {serverCfg, sysCfg} from '../../config';
 import {getSystemContent} from '../../lib/util';
 
-const router = Router({prefix: `${sysCfg.apiPrefix}/api`});
+const router = Router();
 
 router.post('/audio/transcriptions', async (ctx) => {
   const params = ctx.request.body;

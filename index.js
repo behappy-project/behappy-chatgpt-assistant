@@ -22,8 +22,8 @@ app.use(cors({
 
 // 生产环境静态文件放在nginx下
 if (sysCfg.nodeEnv !== 'production') {
-  app.use(staticFiles(`${sysCfg.apiPrefix}/static/`, `${__dirname}/static`));
-  app.use(koaViews(path.join(__dirname, 'views/'), {extension: 'html'}));
+  app.use(staticFiles('/static/', `${__dirname}/static`));
+  app.use(koaViews(path.join(__dirname, 'static/'), {extension: 'html'}));
 }
 
 // body parser
@@ -68,5 +68,4 @@ const port = Number(sysCfg.port);
 server.listen(port, '0.0.0.0')
   .on('listening', () => {
     console.log(`Listening on port: ${port}`);
-    console.log(`Api prefix: ${sysCfg.apiPrefix}`);
   });

@@ -4,15 +4,15 @@
     <meta charset="utf-8"/>
     <title>BeHappy 智能助理</title>
 
-    <script src="/chat-gpt/static/js/jquery.min.js"></script>
-    <script src="/chat-gpt/static/js/socket.io.min.js"></script>
-    <script src="/chat-gpt/static/js/react.development.min.js"></script>
-    <script src="/chat-gpt/static/js/react-dom.development.min.js"></script>
-    <script src="/chat-gpt/static/js/chatui-core.min.js"></script>
-    <link rel="stylesheet" href="/chat-gpt/static/css/index.min.css">
-    <script src="/chat-gpt/static/js/babel.min.js"></script>
-    <script src="/chat-gpt/static/js/chatui-icon.js"></script>
-    <script src="/chat-gpt/static/js/config.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/socket.io.min.js"></script>
+    <script src="/static/js/react.development.min.js"></script>
+    <script src="/static/js/react-dom.development.min.js"></script>
+    <script src="/static/js/chatui-core.min.js"></script>
+    <link rel="stylesheet" href="/static/css/index.min.css">
+    <script src="/static/js/babel.min.js"></script>
+    <script src="/static/js/chatui-icon.js"></script>
+    <script src="/static/js/config.js"></script>
 
     <style type="text/css">html, body, #app {
         height: 100%
@@ -59,7 +59,7 @@
     } = useMessages([{
       type: 'text',
       content: {text: '主人好，我是 BeHappy 智能助理，你的贴心小助手~'},
-      user: {avatar: '/chat-gpt/static/pic/bot.jpg'},
+      user: {avatar: '/static/pic/bot.jpg'},
     }]);
     const msgRef = useRef(null);
     window.appendMsg = appendMsg;
