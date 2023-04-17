@@ -23,7 +23,7 @@ app.use(cors({
 
 // 生产环境静态文件放在nginx下
 if (sysCfg.nodeEnv !== 'production') {
-  app.use(staticFiles(`${sysCfg.apiPrefix}/static/`, `${__dirname}/static`));
+  app.use(staticFiles(`${sysCfg.prefix}/static/`, `${__dirname}/static`));
   app.use(koaViews(path.join(__dirname, 'static/'), {extension: 'html'}));
 }
 
@@ -51,5 +51,5 @@ const port = Number(sysCfg.port);
 app.listen(port, '0.0.0.0')
   .on('listening', () => {
     serverCfg.log.info(`Listening on port: ${port}`);
-    serverCfg.log.info(`Api Prefix: ${sysCfg.apiPrefix}`);
+    serverCfg.log.info(`Api Prefix: ${sysCfg.prefix}`);
   });

@@ -2,7 +2,7 @@ import Router from 'koa-router';
 import {serverCfg, sysCfg} from '../../config';
 import {getSystemContent} from '../../lib/util';
 
-const router = Router({prefix: sysCfg.apiPrefix});
+const router = Router({prefix: sysCfg.prefix + sysCfg.apiPrefix});
 
 /* 聊天 */
 export default router.post('/completions', async (ctx) => {
