@@ -46,14 +46,11 @@
   let systemStyle = 'normal';
   const App = () => {
     const [recordLanguage, setRecordLanguage] = useState('zh');
-    const [msgID, setMsgID] = useState('');
-    const [result, setResult] = useState('');
     let msg = '';
     const {
       messages,
       appendMsg,
       setTyping,
-      updateMsg,
     } = useMessages([{
       type: 'text',
       content: {text: '主人好，我是 BeHappy 智能助理，你的贴心小助手~'},
@@ -105,13 +102,6 @@
         isHighlight: true,
       }
     ];
-    useEffect(() => {
-      // 监听result的改变，来实现打字机效果
-      updateMsg(msgID, {
-        type: 'text',
-        content: {text: result}
-      });
-    }, [result]);
 
     // 获取当前时间戳
     function nanoid() {
@@ -148,13 +138,6 @@
     }
 
     function handleSend(type, val) {
-      // 先设置一个唯一的msgID
-      const msgID = nanoid();
-      setMsgID(msgID);
-      // 重置msg
-      msg = '';
-      // 重置对话框
-      setResult(msg);
       if (type === 'text' && val && val.trim()) {
         appendMsg({
           type: 'text',
@@ -200,11 +183,6 @@
         } else {
           // 处理sessionMsg，保证上下文;
           sessionMsg += '你: ' + val + '\nAI:';
-          appendMsg({
-            _id: msgID,
-            type: 'text',
-            content: {text: result},
-          });
           // 定义url
           const url = baseUrl + '/completions';
           $.ajax({
@@ -220,9 +198,15 @@
                 console.log('请求成功，返回数据为：' + JSON.stringify(response));
               }
               if (response.code === 0) {
-                handleSend('text', response.data);
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.data.content},
+                });
               } else {
-                toast.fail('请求失败，错误信息为：' + response.error);
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.error},
+                });
               }
             },
             error: function (xhr, status, error) {

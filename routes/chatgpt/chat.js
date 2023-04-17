@@ -24,12 +24,12 @@ export default router.post('/completions', async (ctx) => {
     });
     if (response.status !== 200) {
       serverCfg.log.error(response.statusText);
-      ctx.send(response.statusText);
+      ctx.send('QueryError', response.statusText);
       return;
     }
-    ctx.send(response.data.choices[0].message);
+    ctx.send('Success', response.data.choices[0].message);
   } catch (e) {
     serverCfg.log.error(e.stack);
-    ctx.send(e.stack);
+    ctx.send('CallServiceError', e.stack);
   }
 });
