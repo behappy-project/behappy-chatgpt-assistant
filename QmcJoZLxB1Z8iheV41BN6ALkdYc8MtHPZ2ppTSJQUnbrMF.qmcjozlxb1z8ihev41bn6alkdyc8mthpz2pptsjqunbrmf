@@ -1,0 +1,193 @@
+{"prompt":"what does mco stand for\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does the abbreviation co mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is hp\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"is fare code b the same as business class\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does ewr mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is as\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is mco\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does fare code qx mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does us stand for\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is fare code h\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is ewr\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does code yn mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is dl\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does the abbreviation dl mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does the meal code s stand for\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does us mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what's the difference between fare code q and fare code f\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does nw stand for\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is restriction ap 57\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does the fare code qw mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is mia\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"define airline ua\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is bur\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does fare code y mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"explain the fare code q\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is the meaning of fare code qx and qw\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does ua stand for\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"fare code y what does that mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does ea mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does fare code q mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is ff\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is the yn code\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what is fare code y mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what does the fare code f and fn mean\n\nIntent:\n\n","completion":" abbreviation END"}
+{"prompt":"what are the coach fares for flights from charlotte to newark tuesday evening\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me the most expensive one way first class fare from baltimore to dallas\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"i would like to find the cheapest one way fare from boston to oakland\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is your least expensive fare between atlanta and boston\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the first class fare from indianapolis to orlando\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me round trip first class tickets from new york to miami\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me the prices of first class tickets on us air round trip from cleveland to miami\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the cost of a round trip ticket first class between oak and atl\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me all first class fares from new york to miami leaving on a tuesday\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"how much does flight ua 281 from boston to denver cost\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"okay i just want to know the cheapest fare from atlanta to boston\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"round trip first class fares new york to miami\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the lowest cost for a one way ticket from boston to washington\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what are the prices of the flights from atlanta to dallas in the morning\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"can you show me the price of a flight to washington from atlanta on thursday morning\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"fares from dallas to baltimore\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me fares from houston to las vegas\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me round trip fares from las vegas to houston nonstop\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"please show me all fares for flights from denver to oakland\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"i would like to know the first class fare on a flight from baltimore to denver\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"how much does it cost to fly directly from philadelphia to san francisco on american airlines\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"please show me round trip tickets from denver to oakland\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the price of a first class ticket from milwaukee to san francisco round trip\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"round trip fares from baltimore to philadelphia under 1000 dollars\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"okay i've got somebody else who wants to take a round trip ticket from charlotte to montreal\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the cheapest fare i can get from dallas to denver\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what's the cheapest round trip fare between boston and washington\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me round trip fares from denver to philadelphia\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"i would like the fare on the us air 1039 from denver to pittsburgh on april twenty\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"round trip fares from denver to philadelphia less than 1000 dollars\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me all prices of economy from baltimore to dallas\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the fare for a one way flight from boston to atlanta\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what are the coach fares from charlotte to la wednesday night\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"fares and flights from baltimore to philadelphia\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what's the lowest round trip fare from dallas to baltimore\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"how much is the 718 am flight from las vegas to new york twa\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me the fare from dallas to san francisco\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what's the price of the least expensive first class round trip ticket on us air from cleveland to miami\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"what is the lowest cost fare that delta has between boston and san francisco\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"i would like a ticket leaving from denver colorado to atlanta georgia with a stop in pittsburgh\n\nIntent:\n\n","completion":" airfare END"}
+{"prompt":"show me the flights from boston to san francisco\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i would like to see the flights from baltimore to philadelphia please\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i need to know what flights leave atlanta on sunday evening and arrive in baltimore\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me one way flights from milwaukee to orlando leaving on wednesday morning\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show flights from denver to san francisco\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me all flight from san francisco to oakland\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"please give me all flights from long beach to memphis\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i would like to fly to san francisco early in the day\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me all flights from philadelphia to denver on sunday which leave philadelphia after noon\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i need a flight from pittsburgh to new york city\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i would like to book a flight from charlotte to baltimore on april eighth\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"give me the flights from san francisco to washington dc for december first\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"flight from denver to salt lake city\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i need a flight from atlanta to philadelphia and i'm looking for the cheapest fare\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"what flights go from boston to denver before 10 am\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"flights from newark to cleveland daily 5 o'clock pm\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"flight from nashville back to milwaukee\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"list all flights going from boston to atlanta after 6 o'clock pm on wednesday\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"on april sixth i would like to book an early morning flight from tampa to charlotte\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"all northwest flights with stopovers in denver\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i would like to fly to denver for under 500 dollars please show me the airfares between pittsburgh and denver\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"flights from indianapolis to seattle washington\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me the flights from philadelphia to dallas that stop in atlanta\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"what is your cheapest flight from pittsburgh to denver\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"what are the coach flights between dallas and baltimore leaving august tenth and returning august twelve\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i need a flight from san francisco to boston that leaves after 10 pm\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"i want a flight from denver to pittsburgh then from pittsburgh to atlanta then from atlanta back to pittsburgh back to denver\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"what flights go from boston to atlanta next tuesday\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me flights from philadelphia to oakland on friday\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"find travel arrangements for a round trip flight from boston to pittsburgh\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"okay and can you tell me for flights departing from dallas to philadelphia the latest flight you would have departing from dallas to philadelphia\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"which transcontinental flight on united airlines from boston to dallas makes a stopover in philadelphia\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me flights from san francisco to boston on thursday\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"do you have a twa flight leaving early in the morning to san francisco from denver\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show flights from memphis to las vegas\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"list all flights from new york to las vegas that fly nonstop on sunday and list flights from memphis to las vegas that fly nonstop on sunday\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me the flights that go from san diego to newark new jersey by way of houston\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"do you have an early morning direct flight from philadelphia to pittsburgh\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"am flights from dallas to san francisco\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"show me the flights from atlanta to philadelphia\n\nIntent:\n\n","completion":" flight END"}
+{"prompt":"what times does continental depart from boston to san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please list the flight times from newark to boston\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"now i'd like a schedule for the flights on tuesday morning from oakland no from dallas fort worth to atlanta\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"show me times for flights from san francisco to atlanta\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the minimum connection time for houston intercontinental\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the schedule of flights from boston to denver next monday\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please give me the flight times i would like to fly from boston to baltimore in the morning before 8\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the total schedule for delta's flights to all airports\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the schedule for flights between pittsburgh and boston on the evening of july ninth\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please list the flight times from pittsburgh to newark\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what times does the late afternoon flight leave from washington for denver\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"i would like a schedule of flights from denver to san francisco on tuesday\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what time is the last flight from washington to san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"i would like the evening schedule of flights from san francisco to washington\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what time are flights from denver to san francisco on continental airlines\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is delta's schedule of morning flights to atlanta\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please give me the flight times the morning on united airlines for september twentieth from philadelphia to san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the schedule of ground transportation from washington airport into downtown\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"show me times for coach flights between boston and baltimore on wednesday\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what time does the tuesday morning 755 flight leaving washington arrive in san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the departure time of the latest flight of united airlines from denver to boston\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please tell me the times of the flights between boston and baltimore\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please list the flight times for boston to pittsburgh\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"i would like the time of all flights from san francisco to pittsburgh on sunday\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what time does flight aa 459 depart\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"i would like the time your earliest flight from washington to philadelphia\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the arrival time in san francisco for the 755 am flight leaving washington\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the flight schedule of the f28 from pittsburgh to baltimore\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"please list the flight schedule from baltimore to san francisco on friday nights\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what are the times that you have planes leaving from san francisco going to pittsburgh on july seventh\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what are the schedule of flights from boston to san francisco for august first\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what time does the flight leave denver going to san francisco on continental airlines\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"show me the schedule for airlines leaving pittsburgh going to san francisco for next monday\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"show me the flight schedule from pittsburgh to san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"list departure times from denver to philadelphia which are later than 10 o'clock and earlier than 2 pm\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"on united airlines give me the flight times from boston to dallas\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"all right give me the flight times in the morning on september twentieth from pittsburgh to san francisco\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"when does continental fly from philadelphia to denver on sundays\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what is the earliest departure time from boston to denver\n\nIntent:\n\n","completion":" flight_time END"}
+{"prompt":"what kind of ground transportation is there in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there ground transportation from the boston airport to downtown boston\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"show me the ground transportation schedule in san francisco on thursday evening\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"tell me about ground transportation between the dallas fort worth airport and downtown dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"train to newark\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available in san francisco\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is there from the airport in atlanta to downtown\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available at the baltimore airport\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there any ground transportation to the city in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there ground transportation in dallas from the dallas airport to downtown dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"can i get a rental car in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what type of ground transportation is available at philadelphia airport\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"ground transportation in dallas and boston\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there ground transportation from the airport in denver to downtown\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what is the available ground transportation between the airport in denver and downtown\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what is the ground transportation available in fort worth\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what type of ground transportation is available in washington\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transport is available in baltimore\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what is the ground transportation in san diego\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what is the ground transportation from boston airport to boston downtown\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there ground transportation between airport and downtown in boston\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"show me all ground transportation in washington dc\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available in boston\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available into washington\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available from the pittsburgh airport\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what ground transportation is available from pittsburgh to downtown\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what kind of ground transportation is available in denver\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"can you find out about the ground transportation available in atlanta\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"rental cars in washington dc\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"how much time does it take to go between the airport and downtown by ground transportation in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"show me the ground transportation schedule in philadelphia in the morning on wednesday\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"is there an airport limousine at the atlanta airport\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"please give me ground transportation information for denver\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"show me the car rentals in baltimore\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"are there any limousines or taxi services available at the boston airport\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"i'm looking for ground transportation in dallas\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"ground transportation from airport in boston to downtown boston\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"ground transportation philadelphia\n\nIntent:\n\n","completion":" ground_service END"}
+{"prompt":"what is the ground transportation available in the city of philadelphia\n\nIntent:\n\n","completion":" ground_service END"}
