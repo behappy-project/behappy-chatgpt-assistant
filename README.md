@@ -37,6 +37,9 @@
 
 ### 运行脚本
 > 此处提供shell脚本，保存为sh结尾文件，一键运行即可(此处以centos举例，视情况更改包管理器指令。记得替换下文中标识的环境变量)
+>
+> 这里提供个免费的redis云数据库：https://app.redislabs.com/
+
 
 ```shell
 #!/usr/bin/env bash
