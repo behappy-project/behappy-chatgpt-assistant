@@ -1,10 +1,16 @@
 {
   "sys": {
     "port": "SYS_PORT",
-    "savePoint": "SYS_SAVE_POINT"
+    "savePoint": "SYS_SAVE_POINT",
+    "secretKey": "SECRET_KEY"
   },
   "chatGpt": {
     "host": "CHAT_GPT_HOST",
     "key": "OPEN_API_KEY"
+  },
+  "redis": {
+    "host": "REDIS_HOST",
+    "port": "REDIS_PORT",
+    "password": "REDIS_PASSWORD"
   }
 }

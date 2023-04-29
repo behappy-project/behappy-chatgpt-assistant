@@ -60,8 +60,26 @@ export const sysCfg = {
   prefix: '/chat-gpt',
   apiPrefix: '/api',
   nodeEnv: process.env.NODE_ENV,
+  secretKey: envCfg.sys.secretKey,
 };
 
+
+/**
+ * redis
+ * 用户数据: db0，GPT-USER:xxx
+ */
+export const redisCfg = [
+  {
+    // 用户信息
+    key: 'user',
+    opts: {
+      ...envCfg.redis,
+      seconds: 0,
+      prefix: 'GPT-USER:',
+      db: '0',
+    },
+  },
+];
 export const serverCfg = (() => {
   this.openai = new Openai({...envCfg.chatGpt}).openai;
   this.log = new Logger({appName: sysCfg.name});

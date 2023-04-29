@@ -26,5 +26,9 @@
   "RequestTooManyError": {
     "code": 4006,
     "msg": "RequestTooManyError"
+  },
+  "AuthorizationError": {
+    "code": 4007,
+    "msg": "AuthorizationError"
   }
 }

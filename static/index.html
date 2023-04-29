@@ -19,6 +19,11 @@
 </head>
 <body>
 <script type="text/babel">
+  $(function() { // 页面onload时执行
+    if (!token()) { // 如果token不存在
+      window.location.href = `${baseLocation}/login`; // 跳转到登录页面
+    }
+  });
   const {
     useState,
     useEffect,
@@ -154,6 +159,9 @@
           $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+              "Authorization": token(),
+            },
             data: {
               'prompt': val
             },
@@ -188,6 +196,9 @@
           $.ajax({
             url: url,
             type: 'POST',
+            headers: {
+              "Authorization": token(),
+            },
             data: {
               'msg': sessionMsg,
               'systemStyle': systemStyle,
@@ -294,6 +305,9 @@
       $.ajax({
         url: url,
         type: 'POST',
+        headers: {
+          "Authorization": token(),
+        },
         data: {
           'msg': base64String,
           'systemStyle': systemStyle

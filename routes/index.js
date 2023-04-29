@@ -2,18 +2,25 @@ import Router from 'koa-router';
 import image from './chatgpt/image';
 import audio from './chatgpt/audio';
 import chat from './chatgpt/chat';
-import {serverCfg} from '../config';
+import user from './chatgpt/user';
+import {serverCfg, sysCfg} from '../config';
 
-const router = Router();
+const router = Router({prefix: sysCfg.prefix});
 
-const index = router.get('/', async (ctx) => {
+router.get('/', async (ctx) => {
   serverCfg.log.debug('success deploy...');
   await ctx.render('index');
 });
 
+router.get('/login', async (ctx) => {
+  serverCfg.log.debug('login...');
+  await ctx.render('login');
+});
+
 export {
-  index,
+  router,
   image,
   audio,
   chat,
+  user,
 };

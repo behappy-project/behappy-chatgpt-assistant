@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/chat-gpt/static/js/jquery.min.js"></script>
+    <script src="/chat-gpt/static/js/config.js"></script>
+
+    <style>
+        /* CSS样式表 */
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin: 100px auto;
+            padding: 20px;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0 0 20px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 12%;
+            border-radius: 30%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* 响应式布局 */
+        @media screen and (max-width: 600px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="error-message"></div>
+<form id="login-form" method="post">
+    <div class="container">
+        <h2>请 登 录</h2>
+        <div class="imgcontainer">
+            <img src="/chat-gpt/static/pic/bot.jpg" alt="Avatar" class="avatar">
+        </div>
+        <label for="username"><b>账 号</b></label>
+        <input type="text" placeholder="请输入账号" name="username" id="username" required>
+        <label for="password"><b>密 码</b></label>
+        <input type="password" placeholder="请输入密码" name="password" id="password" required>
+        <button type="submit">登录</button>
+        <label>
+            <span class="psw"><a href="#">申请账号</a></span>
+        </label>
+    </div>
+</form>
+<script>
+  // 定义url
+  const url = baseUrl + '/login';
+  // 在表单提交时，使用 jQuery 的 $.post 方法发送 AJAX 请求
+  $('#login-form').submit(function(event) {
+    event.preventDefault(); // 防止表单默认的提交行为
+    const formData = $(this).serialize(); // 将表单数据序列化为字符串
+    $.post(url, formData)
+      .done(function(response) {
+        if (response.code === 0) {
+          window.sessionStorage.setItem('token', response.data)
+          // 处理登录成功的情况
+          window.location.href = baseLocation; // 重定向到首页
+        } else {
+          // 处理登录失败的情况
+          $('#error-message').html(response.error); // 显示错误消息
+        }
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        // 处理登录失败的情况
+        const errorMessage = jqXHR.responseText;
+        $('#error-message').html(errorMessage); // 显示错误消息
+      });
+  });
+</script>
+</body>
+</html>

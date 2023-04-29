@@ -1,4 +1,7 @@
 /* eslint-disable */
-const baseLocation = 'localhost:4000';
-const baseUrl = `http://${baseLocation}/chat-gpt/api`;
+const baseLocation = `${window.location.origin}/chat-gpt`;
+const baseUrl = `${baseLocation}/api`;
+const token = () => {
+  return window.sessionStorage.getItem('token')
+};
 const environment = 'development';
