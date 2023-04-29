@@ -4,15 +4,14 @@
     <meta charset="utf-8"/>
     <title>BeHappy 智能助理</title>
 
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/socket.io.min.js"></script>
-    <script src="/static/js/react.development.min.js"></script>
-    <script src="/static/js/react-dom.development.min.js"></script>
-    <script src="/static/js/chatui-core.min.js"></script>
-    <link rel="stylesheet" href="/static/css/index.min.css">
-    <script src="/static/js/babel.min.js"></script>
-    <script src="/static/js/chatui-icon.js"></script>
-    <script src="/static/js/config.js"></script>
+    <script src="/chat-gpt/static/js/jquery.min.js"></script>
+    <script src="/chat-gpt/static/js/react.development.min.js"></script>
+    <script src="/chat-gpt/static/js/react-dom.development.min.js"></script>
+    <script src="/chat-gpt/static/js/chatui-core.min.js"></script>
+    <link rel="stylesheet" href="/chat-gpt/static/css/index.min.css">
+    <script src="/chat-gpt/static/js/babel.min.js"></script>
+    <script src="/chat-gpt/static/js/chatui-icon.js"></script>
+    <script src="/chat-gpt/static/js/config.js"></script>
 
     <style type="text/css">html, body, #app {
         height: 100%
@@ -47,19 +46,15 @@
   let systemStyle = 'normal';
   const App = () => {
     const [recordLanguage, setRecordLanguage] = useState('zh');
-    const [msgID, setMsgID] = useState('');
-    const [result, setResult] = useState('');
     let msg = '';
     const {
       messages,
       appendMsg,
       setTyping,
-      updateMsg,
-      prependMsgs
     } = useMessages([{
       type: 'text',
       content: {text: '主人好，我是 BeHappy 智能助理，你的贴心小助手~'},
-      user: {avatar: '/static/pic/bot.jpg'},
+      user: {avatar: '/chat-gpt/static/pic/bot.jpg'},
     }]);
     const msgRef = useRef(null);
     window.appendMsg = appendMsg;
@@ -107,40 +102,6 @@
         isHighlight: true,
       }
     ];
-    useEffect(() => {
-      // 监听result的改变，来实现打字机效果
-      updateMsg(msgID, {
-        type: 'text',
-        content: {text: result}
-      });
-    }, [result]);
-    const socket = io(baseUrl, {
-      path: websocketPath,
-      transports: ['websocket'],
-      pingTimeout: 60000,
-    });
-    // 连接状态
-    socket.on('connect', () => {
-      if (environment !== 'production') {
-        console.log('connected? ', socket.connected); // true
-        console.log('disconnected? ', socket.disconnected); // true
-      }
-    });
-    // 监听收到消息事件
-    socket.on('resMsgEvent', (data) => {
-      if (environment !== 'production') {
-        console.log('收到服务器消息:', data);
-      }
-      // 处理sessionMsg，保证上下文
-      if (data === '[DONE]') {
-        // 说明是结尾
-        sessionMsg += '\n';
-      } else {
-        msg += data;
-        setResult(msg);
-        sessionMsg += data;
-      }
-    });
 
     // 获取当前时间戳
     function nanoid() {
@@ -177,13 +138,6 @@
     }
 
     function handleSend(type, val) {
-      // 先设置一个唯一的msgID
-      const msgID = nanoid();
-      setMsgID(msgID);
-      // 重置msg
-      msg = '';
-      // 重置对话框
-      setResult(msg);
       if (type === 'text' && val && val.trim()) {
         appendMsg({
           type: 'text',
@@ -229,24 +183,40 @@
         } else {
           // 处理sessionMsg，保证上下文;
           sessionMsg += '你: ' + val + '\nAI:';
-          appendMsg({
-            _id: msgID,
-            type: 'text',
-            content: {text: result},
-          });
-          if (socket.connected) {
-            socket.emit('reqMsgEvent', JSON.stringify({
-              msg: sessionMsg,
-              systemStyle
-            }), (response) => {
+          // 定义url
+          const url = baseUrl + '/completions';
+          $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+              'msg': sessionMsg,
+              'systemStyle': systemStyle,
+              'language': recordLanguage
+            },
+            success: function (response) {
               if (environment !== 'production') {
-                console.log(response);
+                console.log('请求成功，返回数据为：' + JSON.stringify(response));
               }
-            });
-          } else {
-            toast.show('Socket连接中,如长时间无法连接请刷新...');
-            socket.connect();
-          }
+              if (response.code === 0) {
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.data.content},
+                });
+                sessionMsg += (response.data.content + '\n');
+              } else {
+                appendMsg({
+                  type: 'text',
+                  content: {text: response.error},
+                });
+              }
+            },
+            error: function (xhr, status, error) {
+              if (environment !== 'production') {
+                console.log('请求失败，错误信息为：' + error);
+              }
+              toast.fail('请求失败，错误信息为：' + error);
+            }
+          });
         }
 
       }
@@ -326,8 +296,7 @@
         type: 'POST',
         data: {
           'msg': base64String,
-          'systemStyle': systemStyle,
-          'language': recordLanguage
+          'systemStyle': systemStyle
         },
         success: function (response) {
           if (environment !== 'production') {

@@ -57,11 +57,39 @@ export const sysCfg = {
   name,
   port: envCfg.sys.port,
   savePoint: envCfg.sys.savePoint,
+  prefix: '/chat-gpt',
+  apiPrefix: '/api',
   nodeEnv: process.env.NODE_ENV,
 };
 
 export const serverCfg = (() => {
   this.openai = new Openai({...envCfg.chatGpt}).openai;
   this.log = new Logger({appName: sysCfg.name});
+
+  this.acc = (ctx) => {
+    const defaultFormat = ':remoteAddr ~ '
+      + ':url ~ '
+      + 'HTTP/:httpVersion ~ '
+      + ':method ~ '
+      + ':status ~ '
+      + ':contentLength ~ '
+      + ':referer ~ '
+      + ':userAgent ~ '
+      + ':code';
+    const defaultTokens = [
+      {token: ':remoteAddr', replacement: ctx.headers['x-real-ip'] || ctx.ip},
+      {token: ':url', replacement: ctx.path},
+      {token: ':httpVersion', replacement: `${ctx.req.httpVersionMajor}.${ctx.req.httpVersionMinor}`},
+      {token: ':method', replacement: ctx.method},
+      {token: ':status', replacement: ctx.response.status},
+      {token: ':contentLength', replacement: 0},
+      {token: ':referer', replacement: ctx.headers.referer || '-'},
+      {token: ':userAgent', replacement: ctx.headers['user-agent']},
+      {token: ':code', replacement: ctx.response.body ? ctx.response.body.code : 1},
+    ];
+    let strLog = defaultFormat;
+    defaultTokens.forEach(v => strLog = strLog.replace(v.token, v.replacement));
+    this.log.acc(strLog);
+  };
   return this;
 })();
