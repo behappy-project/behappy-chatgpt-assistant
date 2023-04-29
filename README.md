@@ -40,6 +40,7 @@
 
 ```shell
 #!/usr/bin/env bash
+export NODE_ENV=master
 export SYS_PORT=4000
 export SYS_SAVE_POINT="/tmp/"
 export SECRET_KEY="xxx"
