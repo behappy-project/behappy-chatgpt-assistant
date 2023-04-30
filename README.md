@@ -8,7 +8,7 @@
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
 ## 公告
-> 本人目前免费额度已经到期，目前在自费买apiKey的使用额度。
+> 本人免费额度已经到期，目前在自费买apiKey的使用额度。
 > 
 > 所以为了防止滥用，加了用户注册认证（注：新注册账号需要经过验证，可以加群并@我）
 
