@@ -28,9 +28,6 @@
 - [ ] Fine-tune
 - [ ] prompt优化 - 长期
 
-## 版本要求
-> Nodejs >= 16.x
-
 ## BeHappy 智能助理
 - 内置openAPI key
 - 无需代理，可供国内用户访问
@@ -78,8 +75,18 @@ Chrome 高版本中非https无法打开摄像头和录音功能
 5. 然后点击右下角的`Relaunch`
 
 ## 本地开发
-- clone当前仓库地址
-- 新建文件，路径：config/local.json，内容如下：
+
+### 版本要求
+
+> Nodejs >= 16.x
+
+### clone当前仓库地址
+> 执行`git cloen https://github.com/behappy-project/behappy-chatgpt-assistant.git`
+
+### 自建本地配置文件
+
+> 路径：config/local.json，内容如下：
+
 ```json
 {
   "sys": {
@@ -98,9 +105,13 @@ Chrome 高版本中非https无法打开摄像头和录音功能
   }
 }
 ```
-- 境内访问需要配置proxy，详见代码lib/openai.js-15行
-- 执行 npm run start
-- 访问地址：`http://localhost:4000/chat-gpt`
+### 配置proxy
+> 境内访问需要配置proxy，详见代码lib/openai.js-15行
 
+### 启动
+> 根目录执行 `npm run start`
+
+### 访问
+> 访问地址：`http://localhost:4000/chat-gpt`
 
 更新中。。。
