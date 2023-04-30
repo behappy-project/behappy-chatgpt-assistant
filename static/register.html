@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Register Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/chat-gpt/static/js/jquery.min.js"></script>
@@ -92,7 +92,7 @@
 <div id="error-message"></div>
 <form id="login-form" method="post">
     <div class="container">
-        <h2>请 登 录</h2>
+        <h2>请 注 册</h2>
         <div class="imgcontainer">
             <img src="/chat-gpt/static/pic/bot.jpg" alt="Avatar" class="avatar">
         </div>
@@ -100,16 +100,13 @@
         <input type="text" placeholder="请输入账号，内容仅限字母" name="username" id="username" pattern="[a-zA-Z]+" required>
         <label for="password"><b>密 码</b></label>
         <input type="password" placeholder="请输入密码" name="password" id="password" required>
-        <button type="submit">登录</button>
-        <button type="button" style="background-color: red" onclick="window.location.href = (baseLocation + '/register')">注册</button>
-        <label>
-            <span class="psw"><a href="https://github.com/behappy-project/behappy-chatgpt-assistant#%E5%85%AC%E5%91%8A">关于账号的说明</a></span>
-        </label>
+        <button type="submit">注册</button>
+        <button type="submit" style="background-color: red" onclick="window.location.href = (baseLocation + '/login')">返回登录</button>
     </div>
 </form>
 <script>
   // 定义url
-  const url = baseUrl + '/login';
+  const url = baseUrl + '/register';
   // 在表单提交时，使用 jQuery 的 $.post 方法发送 AJAX 请求
   $('#login-form').submit(function(event) {
     event.preventDefault(); // 防止表单默认的提交行为
@@ -117,11 +114,8 @@
     $.post(url, formData)
       .done(function(response) {
         if (response.code === 0) {
-          window.sessionStorage.setItem('token', response.data)
-          // 处理登录成功的情况
-          window.location.href = baseLocation; // 重定向到首页
+          $('#error-message').html('注册成功，请返回登录页！');
         } else {
-          // 处理登录失败的情况
           $('#error-message').html(response.error); // 显示错误消息
         }
       })

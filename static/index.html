@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1, maximum-scale=1, viewport-fit=cover"/>
     <title>BeHappy 智能助理</title>
 
     <script src="/chat-gpt/static/js/jquery.min.js"></script>
@@ -13,9 +13,13 @@
     <script src="/chat-gpt/static/js/chatui-icon.js"></script>
     <script src="/chat-gpt/static/js/config.js"></script>
 
-    <style type="text/css">html, body, #app {
-        height: 100%
-    }</style>
+    <style type="text/css">
+        html, body, #app {
+            height: 100%;
+            margin: 0;
+        }
+
+    </style>
 </head>
 <body>
 <script type="text/babel">
@@ -374,10 +378,11 @@
       <Chat
         renderBeforeMessageList={renderBeforeMessageList}
         navbar={{
-          leftContent: {
-            icon: 'chevron-left',
-            title: 'Back'
-          },
+          // todo 返回健
+          // leftContent: {
+          //   icon: 'chevron-left',
+          //   title: 'Back'
+          // },
           rightContent: [
             {
               icon: 'apps',
@@ -399,12 +404,17 @@
         toolbar={toolbar}
         onToolbarClick={toolbarClick}
         messagesRef={msgRef}
-        wideBreakpoint="900px"
+        wideBreakpoint="600px"
         onImageSend={() => Promise.resolve()}
       />
     );
   };
 
-  ReactDOM.render(<App/>, document.querySelector('#app'));
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>, document.querySelector('#app'));
 </script>
 <div id="app"></div>
+</body>
+</html>

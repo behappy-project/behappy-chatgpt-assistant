@@ -45,11 +45,14 @@ app.use(koaBody({
   },
 }));
 
+// 校验token
 app.use(auth({
   filter: [
     '\\.(js|css|jpg)$',
     `${sysCfg.prefix}${sysCfg.apiPrefix}/login`,
+    `${sysCfg.prefix}${sysCfg.apiPrefix}/register`,
     `${sysCfg.prefix}/login`,
+    `${sysCfg.prefix}/register`,
     `${sysCfg.prefix}`,
   ],
 }));

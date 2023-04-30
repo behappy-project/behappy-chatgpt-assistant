@@ -70,12 +70,20 @@ export const sysCfg = {
  */
 export const redisCfg = [
   {
-    // 用户信息
-    key: 'user',
+    key: 'stringUser',
     opts: {
       ...envCfg.redis,
       seconds: 0,
-      prefix: 'GPT-USER:',
+      prefix: 'GPT-USER:STRING:',
+      db: '0',
+    },
+  },
+  {
+    key: 'hashUser',
+    opts: {
+      ...envCfg.redis,
+      seconds: 0,
+      prefix: 'GPT-USER:HASH:',
       db: '0',
     },
   },
