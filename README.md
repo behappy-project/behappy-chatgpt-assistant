@@ -7,6 +7,9 @@
 ## 技术沟通群
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
+## 效果图
+![动画](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy-chatgpt-assistant.gif)
+
 ## 公告
 > 本人免费额度已经到期，目前在自费买apiKey的使用额度。
 > 
@@ -32,7 +35,7 @@
 - 内置openAPI key
 - 无需代理，可供国内用户访问
 - 语音识别
-- 图片生成（希望应答图片的话，发送方需要以`图片:`开头，祥见效果图）
+- 图片生成（希望应答图片的话，发送方需要以`图片:`开头，例如`图片:变形金刚`）
 
 ## 部署
 
@@ -98,10 +101,6 @@ Chrome 高版本中非https无法打开摄像头和录音功能
 - 境内访问需要配置proxy，详见代码lib/openai.js-15行
 - 执行 npm run start
 - 访问地址：`http://localhost:4000/chat-gpt`
-
-
-## 效果图
-![动画](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy-chatgpt-assistant.gif)
 
 
 更新中。。。
