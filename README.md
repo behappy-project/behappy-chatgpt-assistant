@@ -81,7 +81,7 @@ Chrome 高版本中非https无法打开摄像头和录音功能
 > Nodejs >= 16.x
 
 ### clone当前仓库地址
-> 执行`git cloen https://github.com/behappy-project/behappy-chatgpt-assistant.git`
+> 执行`git clone https://github.com/behappy-project/behappy-chatgpt-assistant.git`
 
 ### 自建本地配置文件
 
