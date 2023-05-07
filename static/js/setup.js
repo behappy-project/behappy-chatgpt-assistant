@@ -157,7 +157,7 @@ const bot = new ChatSDK({
             + '<p>如果该项目对你有帮助，请点个 star 支持下吧！</p><br>\n'
             + '<p>加入技术沟通群</p>\n'
             + '<div style="display: flex; justify-content: center; align-items: center;">\n'
-            + '  <img src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/behappy_group.jpg" alt="技术沟通群" style="border-radius: 10px;">\n'
+            + '  <img src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/behappy_group.jpg" alt="技术沟通群" style="width: 230px; height: 300px; border-radius: 10px;">\n'
             + '</div>',
         },
       },
