@@ -9,14 +9,10 @@
 
 ## 效果图
 ### 移动端
-<a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif">
-  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif"/>
-</a>
+![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif)
 
 ### PC端
-<a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif">
-  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif"/>
-</a>
+![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif)
 
 ## 公告
 > 本人免费额度已经到期，目前在自费买apiKey的使用额度。
