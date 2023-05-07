@@ -4,8 +4,8 @@
     <title>Register Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/chat-gpt/static/js/jquery.min.js"></script>
-    <script src="/chat-gpt/static/js/config.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/chat-gpt/static/js/util.js"></script>
 
     <style>
         /* CSS样式表 */
@@ -114,7 +114,7 @@
     $.post(url, formData)
       .done(function(response) {
         if (response.code === 0) {
-          $('#error-message').html('注册成功，请返回登录页！');
+          $('#error-message').html('注册成功，请联系我进行账号验证！');
         } else {
           $('#error-message').html(response.error); // 显示错误消息
         }

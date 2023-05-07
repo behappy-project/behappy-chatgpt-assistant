@@ -20,7 +20,10 @@ router.post('/images/generations', async (ctx) => {
       return ctx.send('QueryError', response.statusText);
     }
     const result = response.data.data[0].url;
-    ctx.send('Success', result);
+    ctx.send('Success', {
+      data: result,
+      type: 'image',
+    });
   } catch (e) {
     serverCfg.log.error(e.stack);
     ctx.send('CallServiceError', e.stack);
