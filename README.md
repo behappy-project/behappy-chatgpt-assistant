@@ -7,7 +7,7 @@
 - 移动端可使用手机浏览器扫描如下二维码进入
 
 <a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png">
-  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png"/>
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png" width="300px"/>
 </a>
 
 ## 技术沟通群
@@ -18,7 +18,7 @@
 ![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif)
 
 ### PC端
-![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif)
+![](https://github.com/wang-xiaowu/picture_repository/blob/master/chat-gpt-pc.gif?raw=true)
 
 ## 公告
 > 我的免费额度已经到期，目前在自费买apiKey的使用额度。
