@@ -6,7 +6,9 @@
 - pc端：https://www.wang-xiaowu.site/chat-gpt
 - 移动端可使用手机浏览器扫描如下二维码进入
 
-![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png)
+<a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png">
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png"/>
+</a>
 
 ## 技术沟通群
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
@@ -19,9 +21,9 @@
 ![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif)
 
 ## 公告
-> 本人免费额度已经到期，目前在自费买apiKey的使用额度。
+> 我的免费额度已经到期，目前在自费买apiKey的使用额度。
 > 
-> 所以为了防止滥用，加了用户注册认证（注：新注册账号需要经过验证，可以加群并@我）
+> 所以为了防止滥用，加了用户注册认证流程（注：新注册账号需要经过验证，可以加群并@我）
 
 
 ## TODO
