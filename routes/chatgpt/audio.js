@@ -31,7 +31,10 @@ router.post('/audio/transcriptions', async (ctx) => {
     // 响应内容
     const {text} = response.data;
     serverCfg.log.debug('audio响应信息:', text);
-    ctx.send('Success', text);
+    ctx.send('Success', {
+      data: text,
+      type: 'audio',
+    });
   } catch (e) {
     serverCfg.log.error(e.stack);
     ctx.send('CallServiceError', e.stack);

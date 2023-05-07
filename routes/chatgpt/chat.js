@@ -27,7 +27,10 @@ export default router.post('/completions', async (ctx) => {
       ctx.send('QueryError', response.statusText);
       return;
     }
-    ctx.send('Success', response.data.choices[0].message);
+    ctx.send('Success', {
+      data: response.data.choices[0].message,
+      type: 'chat',
+    });
   } catch (e) {
     serverCfg.log.error(e.stack);
     ctx.send('CallServiceError', e.stack);

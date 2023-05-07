@@ -8,7 +8,15 @@
 <img src="https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy_group.jpg" width="300px">
 
 ## 效果图
-![动画](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/behappy-chatgpt-assistant.gif)
+### 移动端
+<a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif">
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif" width="300px" />
+</a>
+
+### PC端
+<a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif">
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif" width="300px" />
+</a>
 
 ## 公告
 > 本人免费额度已经到期，目前在自费买apiKey的使用额度。

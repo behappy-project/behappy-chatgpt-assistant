@@ -1,22 +1,27 @@
-
 const canRecord = isMobile();
 let recorder;
 let audio;
-let stopRecoderFlag = true;
 let recordBlob;
 const fileReader = new FileReader();
 // 人设
-const systemStyle = 'normal';
+let systemStyle = 'normal';
 const recordLanguage = 'zh';
 // session保存的消息
 let sessionMsg = '';
 const bot = new ChatSDK({
+  components: {
+    // 推荐主动指定 name 属性
+    'adaptable-action-card': {
+      name: 'AlimeComponentAdaptableActionCard',
+      url: '//g.alicdn.com/alime-components/adaptable-action-card/0.1.7/index.js',
+    },
+  },
   config: {
     // 当支持语音时默认用语音输入
     inputType: canRecord ? 'voice' : 'text',
     navbar: {
-      logo: 'https://gw.alicdn.com/tfs/TB1Wbldh7L0gK0jSZFxXXXWHVXa-168-33.svg',
-      title: '浙江政务服务网',
+      logo: '/chat-gpt/static/pic/navbar.jpg',
+      title: 'BEHAPPY智能助理',
     },
     avatarWhiteList: ['knowledge', 'recommend'],
     // 机器人头像
@@ -48,27 +53,92 @@ const bot = new ChatSDK({
           text: '主人好，我是 BeHappy 智能助理，你的贴心小助手~',
         },
       },
+      {
+        type: 'card',
+        content: {
+          code: 'adaptable-action-card',
+          data: {
+            title: '预设行为选择',
+            picUrl: 'https://gw.alicdn.com/tfs/TB1FwxTGxnaK1RjSZFtXXbC2VXa-1200-800.jpg',
+            content: '您好，请问是否需要选择我的预设行为？',
+            actionList: [
+              {
+                text: '聊电影',
+                action: 'click',
+                style: 'primary',
+                param: {
+                  text: 'movie',
+                },
+              },
+              {
+                text: '聊动漫',
+                action: 'click',
+                style: 'primary',
+                param: {
+                  text: 'cartoon',
+                },
+              },
+              {
+                text: '聊计算机技术',
+                action: 'click',
+                style: 'primary',
+                param: {
+                  text: 'computer',
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: 'card',
+        content: {
+          code: 'promotion',
+          data: {
+            array: [
+              {
+                image: '//gw.alicdn.com/tfs/TB1b4RpXkyWBuNjy0FpXXassXXa-150-400.png',
+                toggle: '//gw.alicdn.com/tfs/TB1MsjiXntYBeNjy1XdXXXXyVXa-48-48.png',
+                type: 'recommend',
+                list: [
+                  {
+                    title: '你能为我做什么?',
+                    hot: true,
+                    content: '你能为我做什么?',
+                  },
+                  {
+                    title: 'ChatGPT是什么?',
+                    hot: true,
+                    content: 'ChatGPT是什么?',
+                  },
+                  {
+                    title: '什么是快乐星球?',
+                    content: '什么是快乐星球?',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
     ],
     // 快捷短语
     quickReplies: [
       {
-        code: 'movie',
         icon: 'message',
-        name: '聊电影',
+        name: '请推荐我一部电影',
         isNew: true,
         isHighlight: true,
       },
       {
-        code: 'cartoon',
         icon: 'message',
-        name: '聊动漫',
+        name: '请推荐我一本书',
         isNew: true,
         isHighlight: true,
       },
       {
-        code: 'computer',
         icon: 'message',
-        name: '聊计算机技术',
+        name: '请推荐我一部动漫',
         isNew: true,
         isHighlight: true,
       },
@@ -78,11 +148,17 @@ const bot = new ChatSDK({
     // 侧边栏
     sidebar: [
       {
-        title: '公告',
+        title: '公告栏',
         code: 'richtext',
         data: {
           text:
-                        '<p>这里是富文本内容，支持<a href="https://chatui.io/sdk/getting-started">链接</a>，可展示图片<img src="https://gw.alicdn.com/tfs/TB17TaySSzqK1RjSZFHXXb3CpXa-80-80.svg" /></p>',
+              '<br/><p>项目教程：<a href="https://wang-xiaowu.github.io/posts/2a9d73ff/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
+            + '<p>本项目仓库地址：<a href="https://github.com/behappy-project/behappy-chatgpt-assistant/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
+            + '<p>如果该项目对你有帮助，请点个 star 支持下吧！</p><br>\n'
+            + '<p>加入技术沟通群</p>\n'
+            + '<div style="display: flex; justify-content: center; align-items: center;">\n'
+            + '  <img src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/behappy_group.jpg" alt="技术沟通群" style="width: 230px; height: 250px; border-radius: 10px;">\n'
+            + '</div>',
         },
       },
     ],
@@ -108,42 +184,28 @@ const bot = new ChatSDK({
                         audio.src = URL.createObjectURL(recordBlob);
                       };
                       recorder.start();
-                      stopRecoderFlag = false;
                     })
                     .catch((error) => {
                       console.error(error);
                       // toast.fail('请求失败，错误信息为：' + error);
+                      bot.getCtx().appendMessage({
+                        type: 'text',
+                        content: {
+                          text: error,
+                        },
+                        position: 'left',
+                      });
                     });
       },
       onEnd() {
-        if (!recorder || stopRecoderFlag) {
-          // return toast.show('请先录音！');
-          console.error('请先录音！');
-          return;
-        }
         console.info('录音结束...');
         recorder.stop();
-        stopRecoderFlag = true;
-        fileReader.readAsArrayBuffer(recordBlob);
-
-        fileReader.onload = function () {
-          console.info('发送录音中...');
-          // 获取转换后的ArrayBuffer
-          const arrayBuffer = this.result;
-          const uint8Array = new Uint8Array(arrayBuffer);
-          // 将Uint8Array对象转换为base64编码的字符串
-          const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
-          // 识别到文本后要 ctx.postMessage
-          ctx.postMessage({
-            type: 'speech',
-            content: {
-              text: base64String,
-            },
-            quiet: true, // 不展示
-          });
-        };
-        // 释放
-        URL.revokeObjectURL(recordBlob);
+        // 此处的延迟函数是为了保证上面的recorder.onstop在以下逻辑之前执行
+        setTimeout(() => {
+          fileReader.readAsArrayBuffer(recordBlob);
+          // 释放
+          URL.revokeObjectURL(recordBlob);
+        }, 100);
       },
       onCancel() {
         console.log('取消录音');
@@ -214,6 +276,22 @@ const bot = new ChatSDK({
   },
   handlers: {
     /**
+     * 可通过配置  handlers.track  来处理埋点，当 SDK 及卡片有埋点事件触发时都会透出到此函数中。如果有落库、数据分析等需求时，可将数据传到相应的后端接口。
+     * @param data
+     */
+    track(data) {
+      if (data.c === 'adaptable-action-card' && data.act === 'click') {
+        systemStyle = data.text;
+        bot.getCtx().appendMessage({
+          type: 'text',
+          content: {
+            text: `您已选择预设行为：${systemStyle}`,
+          },
+          position: 'left',
+        });
+      }
+    },
+    /**
      *
      * 解析请求返回的数据
      * @param {object} res - 请求返回的数据
@@ -221,14 +299,44 @@ const bot = new ChatSDK({
      * @return {array}
      */
     parseResponse(res, requestType) {
-      console.log(requestType);
-      console.log(res);
-      if (requestType === 'send' && res.code === 0) {
-        sessionMsg += (`${res.data.content}\n`);
-        // 用 isv 消息解析器处理数据
-        return [{
-          _id: nanoid(), type: 'text', content: {text: res.data.content}, position: 'left',
-        }];
+      if (requestType === 'send') {
+        if (res.code === 0) {
+          const {data: response} = res;
+          switch (response.type) {
+            case 'chat':
+              sessionMsg += (`${response.data.content}\n`);
+              // 用 isv 消息解析器处理数据
+              return [{
+                _id: nanoid(), type: 'text', content: {text: response.data.content}, position: 'left',
+              }];
+            case 'image':
+              // 用 isv 消息解析器处理数据
+              return [{
+                _id: nanoid(), type: 'image', content: {picUrl: response.data}, position: 'left',
+              }];
+            case 'audio':
+              sessionMsg += `你: ${response.data}\nAI:`;
+              // 将语音识别内容发送回去
+              bot.getCtx().postMessage({
+                type: 'text',
+                content: {
+                  text: response.data,
+                },
+                quiet: true, // 不展示
+              });
+              // 用 isv 消息解析器处理数据
+              return [{
+                _id: nanoid(), type: 'text', content: {text: response.data}, position: 'right',
+              }];
+            default:
+              break;
+          }
+        } else {
+          // 用 isv 消息解析器处理数据
+          return [{
+            _id: nanoid(), type: 'text', content: {text: res.error}, position: 'left',
+          }];
+        }
       }
     },
     onToolbarClick(item, ctx) {
@@ -274,5 +382,22 @@ const bot = new ChatSDK({
     },
   },
 });
+
+fileReader.onload = function () {
+  console.info('发送录音中...');
+  // 获取转换后的ArrayBuffer
+  const arrayBuffer = this.result;
+  const uint8Array = new Uint8Array(arrayBuffer);
+  // 将Uint8Array对象转换为base64编码的字符串
+  const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+  // 识别到文本后要 ctx.postMessage
+  bot.getCtx().postMessage({
+    type: 'speech',
+    content: {
+      text: base64String,
+    },
+    quiet: true, // 不展示
+  });
+};
 
 bot.run();

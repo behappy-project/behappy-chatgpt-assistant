@@ -25,5 +25,12 @@
     <script src="/chat-gpt/static/js/setup.js"></script>
 <!--    <script src="//g.alicdn.com/chatui/icons/2.0.2/index.js" async></script>-->
     <script src="https://g.alicdn.com/chatui/icons/0.3.0/index.js" async></script>
-    </body>
+</body>
+<script>
+  $(function() { // 页面onload时执行
+    if (!token()) { // 如果token不存在
+      window.location.href = `${baseLocation}/login`; // 跳转到登录页面
+    }
+  });
+</script>
 </html>
