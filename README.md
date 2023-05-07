@@ -10,12 +10,12 @@
 ## 效果图
 ### 移动端
 <a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif">
-  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif" width="300px" />
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif"/>
 </a>
 
 ### PC端
 <a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif">
-  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif" width="300px" />
+  <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif"/>
 </a>
 
 ## 公告
