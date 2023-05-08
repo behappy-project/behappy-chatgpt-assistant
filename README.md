@@ -1,10 +1,10 @@
-> 如果该项目对你有帮助，请给个“一键三连[watch,fork,star]”吧！
+> 如果该项目对你有帮助，请点个star支持下吧！
 > 
 > 提示ssl不安全是因为证书为自建证书，为了解决浏览器无法录音问题的。点击`高级->继续访问`即可
 
 ## 体验地址
 - pc端：https://www.wang-xiaowu.site/chat-gpt
-- 移动端可使用手机浏览器扫描如下二维码进入
+- 移动端可使用浏览器扫描如下二维码进入
 
 <a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png">
   <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png" width="300px"/>
