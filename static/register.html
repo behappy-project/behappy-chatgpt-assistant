@@ -114,7 +114,7 @@
     $.post(url, formData)
       .done(function(response) {
         if (response.code === 0) {
-          $('#error-message').html('注册成功，请联系我进行账号验证！');
+          $('#error-message').html('注册成功，请联系我进行账户验证');
         } else {
           $('#error-message').html(response.error); // 显示错误消息
         }

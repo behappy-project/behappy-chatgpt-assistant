@@ -1,9 +1,10 @@
 import Router from 'koa-router';
 import {serverCfg, sysCfg} from '../../config';
+import {incrQueryCount} from '../../lib/recordByQuery';
 
 const router = Router({prefix: sysCfg.prefix + sysCfg.apiPrefix});
 
-router.post('/images/generations', async (ctx) => {
+router.post('/images/generations', incrQueryCount, async (ctx) => {
   const params = {...ctx.request.body};
   serverCfg.log.debug(__filename, '[imageGenerations] Request params:', params);
   if (params.prompt.length >= 10) {

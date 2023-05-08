@@ -11,10 +11,6 @@ import staticFiles from './lib/static-files';
 import Redis from './lib/redis';
 
 const app = new Koa();
-app.use(async (ctx, next) => {
-  serverCfg.acc(ctx);
-  await next();
-});
 
 // ctx.redis
 app.context.redis = redisCfg.reduce((s, v) => {

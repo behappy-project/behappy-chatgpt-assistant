@@ -1,11 +1,12 @@
 import Router from 'koa-router';
 import {serverCfg, sysCfg} from '../../config';
 import {getSystemContent} from '../../lib/util';
+import {incrQueryCount} from '../../lib/recordByQuery';
 
 const router = Router({prefix: sysCfg.prefix + sysCfg.apiPrefix});
 
 /* 聊天 */
-export default router.post('/completions', async (ctx) => {
+export default router.post('/completions', incrQueryCount, async (ctx) => {
   const params = {...ctx.request.body};
   serverCfg.log.debug(__filename, '[createChatCompletion] Request params:', params);
   try {

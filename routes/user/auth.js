@@ -32,6 +32,10 @@ router.post('/register', async (ctx) => {
   const params = ctx.request.body;
   serverCfg.log.debug(__filename, '[register] Request params:', params);
   try {
+    const user = await ctx.redis.stringUser.getSync(params.username);
+    if (user) {
+      return ctx.send('CallServiceError', '该账户已被注册');
+    }
     await ctx.redis.stringUser.setSync(params.username, params.password);
     // 新注册账户为未验证过
     await ctx.redis.hashUser.hsetSync(params.username, 'validate', false);
