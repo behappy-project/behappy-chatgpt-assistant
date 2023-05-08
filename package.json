@@ -32,6 +32,7 @@
     "log4js": "^6.3.0",
     "mime": "^3.0.0",
     "moment": "^2.29.4",
+    "node-schedule": "^2.1.1",
     "openai": "^3.2.1",
     "redis": "^3.1.2",
     "tunnel": "^0.0.6"

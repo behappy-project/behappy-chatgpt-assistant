@@ -9,6 +9,7 @@ import * as routes from './routes';
 import {sysCfg, serverCfg, redisCfg} from './config';
 import staticFiles from './lib/static-files';
 import Redis from './lib/redis';
+import {ScheduleJob} from './lib/schedule';
 
 const app = new Koa();
 
@@ -73,3 +74,5 @@ app.listen(port, '0.0.0.0')
     serverCfg.log.info(`Listening on port: ${port}`);
     serverCfg.log.info(`Api Prefix: ${sysCfg.prefix}`);
   });
+// schedule
+ScheduleJob.getInstance(app.context);

@@ -152,12 +152,22 @@ const bot = new ChatSDK({
         code: 'richtext',
         data: {
           text:
-              '<br/><p>项目教程：<a href="https://wang-xiaowu.github.io/posts/2a9d73ff/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
-            + '<p>本项目仓库地址：<a href="https://github.com/behappy-project/behappy-chatgpt-assistant/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
-            + '<p>如果该项目对你有帮助，请点个 star 支持下吧！</p><br>\n'
-            + '<p>加入技术沟通群</p>\n'
+              '<div style="border: 1px solid #ccc; padding: 20px; border-radius: 10px;">\n'
+            + '  <p>项目教程：<a href="https://wang-xiaowu.github.io/posts/2a9d73ff/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
+            + '  <p>本项目仓库地址：<a href="https://github.com/behappy-project/behappy-chatgpt-assistant/" target="_blank" style="color: #0099cc; text-decoration: none; font-weight: bold;">点击跳转</a></p>\n'
+            + '  <p>如果该项目对你有帮助，请点个 star 支持下吧！</p>\n'
+            + '</div><br>\n'
+            + '<div style="border: 1px solid #ccc; padding: 20px; border-radius: 10px;">\n'
+            + '  <p style="font-weight: bold; margin-bottom: 5px;color: #0099cc;">功能描述：</p>\n'
+            + '  <ul style="list-style-type: disc; margin-left: 20px;">\n'
+            + '    <li>内置openAPI key</li>\n'
+            + '    <li>无需代理，可供国内用户访问</li>\n'
+            + '    <li>语音识别（仅移动端提供）</li>\n'
+            + '    <li>图片生成（希望应答图片的话，发送方需要以<span style="color: #0099cc;">图片:</span>开头，例如<span style="color: #0099cc;">图片:变形金刚</span>）</li>\n'
+            + '  </ul>'
+            + '</div><br>\n'
             + '<div style="display: flex; justify-content: center; align-items: center;">\n'
-            + '  <img src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/behappy_group.jpg" alt="技术沟通群" style="width: 230px; height: 300px; border-radius: 10px;">\n'
+            + '  <img src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/behappy_group.jpg" alt="技术沟通群" style="width: 230px; height: 250px; border-radius: 10px;">\n'
             + '</div>',
         },
       },
