@@ -4,7 +4,7 @@
 
 ## 体验地址
 - pc端：https://www.wang-xiaowu.site/chat-gpt
-- 移动端可使用手机浏览器扫描如下二维码进入
+- 移动端可使用浏览器扫描如下二维码进入
 
 <a href="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png">
   <img align="center" src="https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-qrcode.png" width="300px"/>
