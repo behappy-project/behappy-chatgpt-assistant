@@ -341,6 +341,16 @@ const bot = new ChatSDK({
             default:
               break;
           }
+        } else if (res.code === 4008) {
+          const errMsg = '将在三秒后返回登录页，请重新登录！';
+          setTimeout(() => {
+            window.sessionStorage.clear();
+            window.location.reload();
+          }, 3000);
+          // 用 isv 消息解析器处理数据
+          return [{
+            _id: nanoid(), type: 'text', content: {text: `${res.error}${errMsg}`}, position: 'left',
+          }];
         } else {
           // 用 isv 消息解析器处理数据
           return [{
