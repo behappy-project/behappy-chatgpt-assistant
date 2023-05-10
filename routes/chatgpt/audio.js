@@ -14,7 +14,7 @@ router.post('/audio/transcriptions', incrQueryCount, async (ctx) => {
     const {language} = params;
     const systemContent = getSystemContent(params.systemStyle, language);
     const buffer = Buffer.from(base64String, 'base64');
-    const fileName = `${sysCfg.savePoint}/${Date.now()}.mp3`;
+    const fileName = `${sysCfg.savePoint}/${Date.now()}.wav`;
     // 将Buffer对象写入到mp3文件中
     await fs.writeFileSync(fileName, buffer);
     const response = await serverCfg.openai.createTranscription(
