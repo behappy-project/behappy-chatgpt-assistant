@@ -124,4 +124,8 @@ Chrome 高版本中非https无法打开摄像头和录音功能
 ### 访问
 > 访问地址：`http://localhost:4000/chat-gpt`
 
+### 注册用户并验证
+1. 注册用户
+2. redis-cli执行： `HSET "GPT-USER:HASH:{用户名}" "validate" "true"`
+
 更新中。。。
