@@ -41,6 +41,7 @@
     "node-schedule": "^2.1.1",
     "openai": "^3.2.1",
     "redis": "^3.1.2",
+    "socket.io": "^4.6.1",
     "tunnel": "^0.0.6"
   },
   "devDependencies": {

@@ -3,6 +3,8 @@ import koaBody from 'koa-body';
 import cors from '@koa/cors';
 import koaViews from 'koa-views';
 import * as path from 'path';
+import * as http from 'http';
+import {Server} from 'socket.io';
 import resMsg from './lib/response';
 import auth from './lib/auth';
 import * as routes from './routes';
@@ -61,15 +63,35 @@ Object.keys(routes)
       .use(routes[k].allowedMethods());
   });
 
+const server = http.createServer(app.callback());
+const io = new Server(server, {
+  transports: ['websocket'],
+  allowUpgrades: false,
+  pingTimeout: 60000,
+});
+io.on('connection', (socket) => {
+  // 监听客户端发送的消息
+  socket.on('reqMsgEvent', async (message) => {
+    const params = JSON.parse(message);
+    if (!params) {
+      return;
+    }
+    serverCfg.log.debug('[messageEvent] Request params:', params);
+    // 发送消息到客户端
+    await Chat.messageEvent(params, socket);
+  });
+  socket.on('disconnect', (reason) => {
+    serverCfg.log.error('Client disconnected! ', reason);
+  });
+});
 // error handler
-app.on('error', async (err, ctx) => {
+server.on('error', async (err, ctx) => {
   ctx.status = 500;
   serverCfg.log.error('×××××× System error:', err.stack);
 });
-
 // listening
 const port = Number(sysCfg.port);
-app.listen(port, '0.0.0.0')
+server.listen(port, '0.0.0.0')
   .on('listening', () => {
     serverCfg.log.info(`Listening on port: ${port}`);
     serverCfg.log.info(`Api Prefix: ${sysCfg.prefix}`);
