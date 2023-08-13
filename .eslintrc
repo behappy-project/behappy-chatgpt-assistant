@@ -4,6 +4,9 @@
     "es6": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
   "rules": {
     // 关闭驼峰命名规则(由于按照数据库的字段来定义属性)
     "camelcase": "off",
