@@ -1,3 +1,4 @@
+/* eslint-disable */
 const canRecord = isMobile();
 let recorder;
 let audio;
@@ -314,15 +315,14 @@ const bot = new ChatSDK({
           const {data: response} = res;
           switch (response.type) {
             case 'chat':
-              sessionMsg += (`${response.data.content}\n`);
-              // 用 isv 消息解析器处理数据
+              // 此处目的是初始一个对话框
               return [{
-                _id: nanoid(), type: 'text', content: {text: response.data.content}, position: 'left',
+                _id: nanoid(), type: 'text', content: {text: "内容输出中..."}, position: 'left',hasTime: true,
               }];
             case 'image':
               // 用 isv 消息解析器处理数据
               return [{
-                _id: nanoid(), type: 'image', content: {picUrl: response.data}, position: 'left',
+                _id: nanoid(), type: 'image', content: {picUrl: response.data}, position: 'left',hasTime: true,
               }];
             case 'audio':
               sessionMsg += `你: ${response.data}\nAI:`;
@@ -336,7 +336,7 @@ const bot = new ChatSDK({
               });
               // 用 isv 消息解析器处理数据
               return [{
-                _id: nanoid(), type: 'text', content: {text: response.data}, position: 'right',
+                _id: nanoid(), type: 'text', content: {text: response.data}, position: 'right',hasTime: true,
               }];
             default:
               break;
@@ -421,3 +421,44 @@ fileReader.onload = function () {
 };
 
 bot.run();
+
+// 建立sse
+if (window.EventSource) {
+  let source = null;
+  // 建立连接
+  source = new EventSource(`${window.location.origin}/`);
+  /**
+   * 连接一旦建立，就会触发open事件
+   * 另一种写法：source.onopen = function (event) {}
+   */
+  source.addEventListener('open', (e) => {
+    console.log("SSE建立连接...")
+  }, false);
+  /**
+   * 连接一旦建立，就会触发open事件
+   * 另一种写法：source.onopen = function (event) {}
+   */
+  source.addEventListener('error', (e) => {
+    console.log("SSE断开连接...", e)
+  }, false);
+  /**
+   * 客户端收到服务器发来的数据
+   * 另一种写法：source.onmessage = function (event) {}
+   */
+  source.addEventListener('message', (e) => {
+    var oUl = document.getElementById('root');
+    var aBox = getByClass(oUl, 'Bubble text');
+    if (aBox.length > 0) {
+      const text = e.data;
+      const originalHtml = aBox[aBox.length - 1].innerHTML
+      console.log(originalHtml)
+      if (originalHtml === '<p>内容输出中...</p>'){
+        aBox[aBox.length - 1].innerHTML = md.render(text);
+      }else {
+        aBox[aBox.length - 1].innerHTML += md.render(text);
+      }
+      var msgList = getByClass(oUl, "PullToRefresh")[0];
+      msgList.scrollTo(0, msgList.scrollHeight);
+    }
+  });
+}
