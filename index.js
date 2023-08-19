@@ -73,9 +73,11 @@ app.use(koaSse());
 
 app.use(async (ctx) => {
   ctx.queue.on('task_finish', (taskId, result, stats) => {
-    setTimeout(() => {
+    if (result === '[DONE]') {
+      ctx.sse.sendEnd();
+    } else {
       ctx.sse.send(result);
-    }, 500);
+    }
   });
 });
 

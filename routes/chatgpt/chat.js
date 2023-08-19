@@ -32,24 +32,31 @@ export default router.post('/completions', incrQueryCount, async (ctx) => {
     // 异步执行
     setTimeout(() => {
       streamResponse.data.on('data', (chunk) => {
-        const lines = chunk
-          .toString()
-          .split('\n')
-          .filter(line => line.trim()
-            .startsWith('data: '));
-        for (const line of lines) {
-          const msg = line.replace(/^data: /, '');
-          if (msg === '[DONE]') {
-            // 客户端判断输出内容是否是`[DONE]`
-            serverCfg.log.debug('内容结束...');
-          } else {
-            const json = JSON.parse(msg);
-            const token = json.choices[0].delta.content;
-            if (token) {
-              serverCfg.log.debug('发送...', token);
-              ctx.queue.push(token);
+        try {
+          const lines = chunk
+            .toString()
+            .split('\n')
+            .filter(line => line.trim()
+              .startsWith('data: '));
+          for (const line of lines) {
+            const msg = line.replace(/^data: /, '');
+            if (msg === '[DONE]') {
+              // 客户端判断输出内容是否是`[DONE]`
+              serverCfg.log.debug('内容结束...');
+              ctx.queue.push('[DONE]');
+            } else {
+              const json = JSON.parse(msg);
+              const token = json.choices[0].delta.content;
+              if (token) {
+                serverCfg.log.debug('发送...', token);
+                ctx.queue.push(token);
+              }
             }
           }
+        } catch (e) {
+          serverCfg.log.error(e.stack);
+          ctx.queue.push(e.stack);
+          ctx.queue.push('[DONE]');
         }
       });
       // const lines = ['```javascript\n'

@@ -1,4 +1,6 @@
 /* eslint-disable */
+// sse 对象
+let source = null;
 const canRecord = isMobile();
 let recorder;
 let audio;
@@ -236,6 +238,15 @@ const bot = new ChatSDK({
          * @return {object}
          */
     send(msg) {
+      if (!source || source.readyState !== EventSource.OPEN){
+        // 此处目的是初始一个对话框
+        return new Promise((resolve) => {
+          resolve(Swal.fire({
+            title: '请等待SSE建立连接...',
+            confirmButtonText: '我知道了'
+          }));
+        })
+      }
       const data = msg.content;
       let val = data.text;
       // 发送文本消息时
@@ -420,11 +431,11 @@ fileReader.onload = function () {
   });
 };
 
+// 启动机器人
 bot.run();
 
 // 建立sse
 if (window.EventSource) {
-  let source = null;
   // 建立连接
   source = new EventSource(`${window.location.origin}/`);
   /**
@@ -453,9 +464,9 @@ if (window.EventSource) {
       const originalHtml = aBox[aBox.length - 1].innerHTML
       console.log(originalHtml)
       if (originalHtml === '<p>内容输出中...</p>'){
-        aBox[aBox.length - 1].innerHTML = md.render(text);
+        aBox[aBox.length - 1].innerHTML = text;
       }else {
-        aBox[aBox.length - 1].innerHTML += md.render(text);
+        aBox[aBox.length - 1].innerHTML += text;
       }
       var msgList = getByClass(oUl, "PullToRefresh")[0];
       msgList.scrollTo(0, msgList.scrollHeight);
