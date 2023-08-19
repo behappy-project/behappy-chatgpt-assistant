@@ -89,10 +89,11 @@ export const redisCfg = [
   },
 ];
 export const serverCfg = (() => {
-  this.openai = new Openai({...envCfg.chatGpt}).openai;
-  this.log = new Logger({appName: sysCfg.name});
+  const self = {};
+  self.openai = new Openai({...envCfg.chatGpt}).openai;
+  self.log = new Logger({appName: sysCfg.name});
 
-  this.acc = (ctx) => {
+  self.acc = (ctx) => {
     const defaultFormat = ':remoteAddr ~ '
       + ':url ~ '
       + 'HTTP/:httpVersion ~ '
@@ -115,7 +116,7 @@ export const serverCfg = (() => {
     ];
     let strLog = defaultFormat;
     defaultTokens.forEach(v => strLog = strLog.replace(v.token, v.replacement));
-    this.log.acc(strLog);
+    self.log.acc(strLog);
   };
-  return this;
+  return self;
 })();

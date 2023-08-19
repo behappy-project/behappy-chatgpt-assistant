@@ -1,3 +1,4 @@
+/* eslint-disable */
 const canRecord = isMobile();
 let recorder;
 let audio;
@@ -314,15 +315,30 @@ const bot = new ChatSDK({
           const {data: response} = res;
           switch (response.type) {
             case 'chat':
-              sessionMsg += (`${response.data.content}\n`);
+              setTimeout(() => {
+                sessionMsg += (`${response.data.content}\n`);
+                var oUl = document.getElementById('root');
+                var aBox = getByClass(oUl, 'Bubble text');
+                if (aBox.length > 0) {
+                  const text = md.render(response.data.content);
+                  const originalHtml = aBox[aBox.length - 1].innerHTML
+                  if (originalHtml === '<p>内容输出中...</p>'){
+                    aBox[aBox.length - 1].innerHTML = text;
+                  }else {
+                    aBox[aBox.length - 1].innerHTML += text;
+                  }
+                  var msgList = getByClass(oUl, "PullToRefresh")[0];
+                  msgList.scrollTo(0, msgList.scrollHeight);
+                }
+              }, 100)
               // 用 isv 消息解析器处理数据
               return [{
-                _id: nanoid(), type: 'text', content: {text: response.data.content}, position: 'left',
+                _id: nanoid(), type: 'text', content: {text: "内容输出中..."}, position: 'left',hasTime: true,
               }];
             case 'image':
               // 用 isv 消息解析器处理数据
               return [{
-                _id: nanoid(), type: 'image', content: {picUrl: response.data}, position: 'left',
+                _id: nanoid(), type: 'image', content: {picUrl: response.data}, position: 'left',hasTime: true,
               }];
             case 'audio':
               sessionMsg += `你: ${response.data}\nAI:`;
@@ -336,7 +352,7 @@ const bot = new ChatSDK({
               });
               // 用 isv 消息解析器处理数据
               return [{
-                _id: nanoid(), type: 'text', content: {text: response.data}, position: 'right',
+                _id: nanoid(), type: 'text', content: {text: response.data}, position: 'right',hasTime: true,
               }];
             default:
               break;
@@ -420,4 +436,5 @@ fileReader.onload = function () {
   });
 };
 
+// 启动机器人
 bot.run();
