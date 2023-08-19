@@ -434,42 +434,46 @@ fileReader.onload = function () {
 // 启动机器人
 bot.run();
 
-// 建立sse
-if (window.EventSource) {
-  // 建立连接
-  source = new EventSource(`${window.location.origin}/`);
-  /**
-   * 连接一旦建立，就会触发open事件
-   * 另一种写法：source.onopen = function (event) {}
-   */
-  source.addEventListener('open', (e) => {
-    console.log("SSE建立连接...")
-  }, false);
-  /**
-   * 连接一旦建立，就会触发open事件
-   * 另一种写法：source.onopen = function (event) {}
-   */
-  source.addEventListener('error', (e) => {
-    console.log("SSE断开连接...", e)
-  }, false);
-  /**
-   * 客户端收到服务器发来的数据
-   * 另一种写法：source.onmessage = function (event) {}
-   */
-  source.addEventListener('message', (e) => {
-    var oUl = document.getElementById('root');
-    var aBox = getByClass(oUl, 'Bubble text');
-    if (aBox.length > 0) {
-      const text = e.data;
-      const originalHtml = aBox[aBox.length - 1].innerHTML
-      console.log(originalHtml)
-      if (originalHtml === '<p>内容输出中...</p>'){
-        aBox[aBox.length - 1].innerHTML = text;
-      }else {
-        aBox[aBox.length - 1].innerHTML += text;
+
+$(function() { // 页面onload时执行
+  // 建立sse
+  if (window.EventSource && token()) {
+    console.log("刷新一次...")
+    // 建立连接
+    source = new EventSource(`${window.location.origin}/`, { withCredentials: true });
+    /**
+     * 连接一旦建立，就会触发open事件
+     * 另一种写法：source.onopen = function (event) {}
+     */
+    source.addEventListener('open', (e) => {
+      console.log("SSE建立连接...")
+    }, false);
+    /**
+     * 连接一旦建立，就会触发open事件
+     * 另一种写法：source.onopen = function (event) {}
+     */
+    source.addEventListener('error', (e) => {
+      console.log("SSE断开连接...", e)
+    }, false);
+    /**
+     * 客户端收到服务器发来的数据
+     * 另一种写法：source.onmessage = function (event) {}
+     */
+    source.addEventListener('message', (e) => {
+      var oUl = document.getElementById('root');
+      var aBox = getByClass(oUl, 'Bubble text');
+      if (aBox.length > 0) {
+        const text = e.data;
+        sessionMsg += (`${text}`);
+        const originalHtml = aBox[aBox.length - 1].innerHTML
+        if (originalHtml === '<p>内容输出中...</p>'){
+          aBox[aBox.length - 1].innerHTML = text;
+        }else {
+          aBox[aBox.length - 1].innerHTML += text;
+        }
+        var msgList = getByClass(oUl, "PullToRefresh")[0];
+        msgList.scrollTo(0, msgList.scrollHeight);
       }
-      var msgList = getByClass(oUl, "PullToRefresh")[0];
-      msgList.scrollTo(0, msgList.scrollHeight);
-    }
-  });
-}
+    });
+  }
+});

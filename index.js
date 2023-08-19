@@ -3,7 +3,6 @@ import koaBody from 'koa-body';
 import cors from '@koa/cors';
 import koaViews from 'koa-views';
 import * as path from 'path';
-import Queue from 'better-queue';
 import koaSse from 'koa-sse-stream';
 import resMsg from './lib/response';
 import auth from './lib/auth';
@@ -12,10 +11,7 @@ import {sysCfg, serverCfg, redisCfg} from './config';
 import staticFiles from './lib/static-files';
 import Redis from './lib/redis';
 import {ScheduleJob} from './lib/schedule';
-
-const queue = new Queue(((input, cb) => {
-  cb(null, input);
-}), {concurrent: 1});
+import {sendMessage, processMessage} from './lib/util/queue';
 
 const app = new Koa();
 
@@ -25,8 +21,7 @@ app.context.redis = redisCfg.reduce((s, v) => {
   return s;
 },
 {});
-// ctx.queue
-app.context.queue = queue;
+app.context.sendMessage = sendMessage;
 // ctx.send
 app.use(resMsg());
 // cors
@@ -71,14 +66,22 @@ Object.keys(routes)
 // ctx.sse
 app.use(koaSse());
 
+// sse message handle
 app.use(async (ctx) => {
-  ctx.queue.on('task_finish', (taskId, result, stats) => {
-    if (result === '[DONE]') {
-      ctx.sse.sendEnd();
-    } else {
-      ctx.sse.send(result);
+  const self = ctx;
+  // 循环调用处理
+  setInterval(() => {
+    if (globalQueue.length > 0) {
+      const item = globalQueue.shift(); // 弹出
+      const {userId, msg} = item; // 处理消息
+      const userToken = self.cookies.get('user-id');
+      if (msg === '[DONE]') {
+        ctx.sse.sendEnd();
+      } else {
+        ctx.sse.send(msg);
+      }
     }
-  });
+  }, 100);
 });
 
 // error handler
