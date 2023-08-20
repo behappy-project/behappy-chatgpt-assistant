@@ -18,7 +18,7 @@
 ![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif)
 
 ### PC端
-![](https://github.com/wang-xiaowu/picture_repository/blob/master/chat-gpt-pc.gif?raw=true)
+![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif)
 
 ## 公告
 > 我的免费额度已经到期，目前在自费买apiKey的使用额度。
@@ -35,7 +35,7 @@
   - blog：https://www.xiaowu95.wang/posts/2a9d73ff/
   - 视频教程：https://www.bilibili.com/video/BV1ys4y1N7Nk/
   - 离线文档可在群内置顶获取
-- [ ] Fine-tune
+- [x] markdown文本渲染
 - [ ] prompt优化 - 长期
 
 ## BeHappy 智能助理
@@ -46,35 +46,45 @@
 
 ## 部署
 
-### 准备好一台能连接 `https://api.openai.com/v1` 地址的服务器
+### 需要具有以下条件
 
-### 运行脚本
-> 此处提供shell脚本，保存为sh结尾文件，一键运行即可(此处以centos举例，视情况更改包管理器指令。记得替换下文中标识的环境变量)
->
-> 这里提供个免费的redis云数据库：https://app.redislabs.com/
+- 准备好一台能连接 `https://api.openai.com/v1` 地址的服务器
+- 一个redis服务（这里提供个免费的redis云数据库：https://app.redislabs.com/）
+- 一个openai secret key
 
+### 步骤
 
-```shell
-#!/usr/bin/env bash
+- 配置环境变量（必选）
+```env
 export NODE_ENV=master
 export SYS_PORT=4000
 export SYS_SAVE_POINT="/tmp/"
-export SECRET_KEY="xxx"
+export SECRET_KEY="（jwt）替换我"
 export CHAT_GPT_HOST="https://api.openai.com/v1"
-export OPEN_API_KEY="sk-xxx"
-export REDIS_HOST="xxx"
-export REDIS_PORT=3306
-export REDIS_PASSWORD="xxx"
-yum update -y && yum install -y git && git clone https://github.com/behappy-project/behappy-chatgpt-assistant.git \
-&& curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum install -y nodejs \
-&& npm install -g n && n 16.0.0-tls && npm install -g pm2 \
-&& cd behappy-chatgpt-assistant && npm install && npm run pm2 && pm2 logs behappy-chatgpt-assistant
+export OPEN_API_KEY="替换我"
+export REDIS_HOST="替换我"
+export REDIS_PORT="替换我"
+export REDIS_PASSWORD="替换我"
+```
+
+- 安装nodejs 16（可选）
+```bash
+curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum install -y nodejs && npm install -g n && n 16.0.0-tls
+```
+
+- 安装PM2（可选）
+```bash
+npm install -g pm2
+```
+
+- 启动服务
+```bash
+git clone https://github.com/behappy-project/behappy-chatgpt-assistant.git && cd behappy-chatgpt-assistant && npm install && npm run pm2 && pm2 logs behappy-chatgpt-assistant
 ```
 
 ### 访问
 
 - 访问地址：`http://ip:4000/chat-gpt`
-- 服务运行状况可使用pm2进行查看，具体指令可查看：https://www.jiyik.com/w/pm2
 
 ### 问题
 Chrome 高版本中非https无法打开摄像头和录音功能
@@ -126,6 +136,6 @@ Chrome 高版本中非https无法打开摄像头和录音功能
 
 ### 注册用户并验证
 1. 注册用户
-2. redis-cli执行： `HSET "GPT-USER:HASH:{用户名}" "validate" "true"`
+2. 进行验证：redis-cli执行 `HSET "GPT-USER:HASH:{用户名}" "validate" "true"`
 
 更新中。。。
