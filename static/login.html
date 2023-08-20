@@ -119,7 +119,7 @@
         if (response.code === 0) {
           window.sessionStorage.setItem('token', response.data)
           // 设置cookie
-          setCookie("user-id", $("#username").value())
+          setCookie("user-id", $("#username").val())
           // 处理登录成功的情况
           window.location.href = baseLocation; // 重定向到首页
         } else {

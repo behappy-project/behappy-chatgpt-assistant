@@ -464,7 +464,12 @@ $(function() { // 页面onload时执行
       var aBox = getByClass(oUl, 'Bubble text');
       if (aBox.length > 0) {
         const text = e.data;
-        sessionMsg += (`${text}`);
+        if (text === '[DONE]'){
+          sessionMsg += (`\n`);
+          return
+        }else {
+          sessionMsg += (`${text}`);
+        }
         const originalHtml = aBox[aBox.length - 1].innerHTML
         if (originalHtml === '<p>内容输出中...</p>'){
           aBox[aBox.length - 1].innerHTML = text;

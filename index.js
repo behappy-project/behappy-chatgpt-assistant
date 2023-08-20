@@ -71,16 +71,16 @@ app.use(async (ctx) => {
   const self = ctx;
   // 循环调用处理
   setInterval(() => {
-    if (globalQueue.length > 0) {
-      const item = globalQueue.shift(); // 弹出
-      const {userId, msg} = item; // 处理消息
-      const userToken = self.cookies.get('user-id');
+    const cookieUserId = self.cookies.get('user-id');
+    if (cookieUserId) console.log(cookieUserId);
+    processMessage(cookieUserId, (userId, msg) => {
       if (msg === '[DONE]') {
-        ctx.sse.sendEnd();
+        self.sse.send('[DONE]');
+        self.sse.sendEnd();
       } else {
-        ctx.sse.send(msg);
+        self.sse.send(msg);
       }
-    }
+    });
   }, 100);
 });
 
