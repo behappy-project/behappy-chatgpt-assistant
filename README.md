@@ -15,10 +15,10 @@
 
 ## 效果图
 ### 移动端
-![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-mobile.gif)
+![](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/chat-gpt-mobile.gif)
 
 ### PC端
-![](https://cdn.jsdelivr.net/gh/wang-xiaowu/picture_repository@master/chat-gpt-pc.gif)
+![](https://raw.githubusercontent.com/wang-xiaowu/picture_repository/master/chat-gpt-pc.gif)
 
 ## 公告
 > 我的免费额度已经到期，目前在自费买apiKey的使用额度。
