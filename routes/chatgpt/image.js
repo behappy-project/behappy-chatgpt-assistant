@@ -28,7 +28,7 @@ router.post('/images/generations', incrQueryCount, async (ctx) => {
         const fileSuffix = `${Date.now()}.jpg`;
         const fileName = `${sysCfg.savePoint}/${fileSuffix}`;
         fs.writeFileSync(fileName, imageBuffer);
-        ctx.send('Success', {
+        return ctx.send('Success', {
           data: `${host}/${fileSuffix}`,
           type: 'image',
         });
