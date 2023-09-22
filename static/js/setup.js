@@ -164,7 +164,7 @@ const bot = new ChatSDK({
             + '    <li>内置openAPI key</li>\n'
             + '    <li>无需代理，可供国内用户访问</li>\n'
             + '    <li>语音识别（仅移动端提供）</li>\n'
-            + '    <li>图片生成（希望应答图片的话，发送方需要以<span style="color: #0099cc;">图片:</span>开头，例如<span style="color: #0099cc;">图片:变形金刚</span>）</li>\n'
+            + '    <li>AI绘画（如需使用AI绘画功能，发送方需要以<span style="color: #0099cc;">图片:</span>开头，例如<span style="color: #0099cc;">图片:the flying pig</span>。纯英文效果更佳！）</li>\n'
             + '  </ul>'
             + '</div><br>\n'
             + '<div style="display: flex; justify-content: center; align-items: center;">\n'
