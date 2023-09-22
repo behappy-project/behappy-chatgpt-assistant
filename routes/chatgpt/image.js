@@ -21,21 +21,21 @@ router.post('/images/generations', incrQueryCount, async (ctx) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${envCfg.wizModel.key}`,
     };
-    axios.post(url, payload, {headers})
+    await axios.post(url, payload, {headers})
       .then((res) => {
         const base64Image = res.data.images[0];
         const imageBuffer = Buffer.from(base64Image, 'base64');
         const fileSuffix = `${Date.now()}.jpg`;
         const fileName = `${sysCfg.savePoint}/${fileSuffix}`;
         fs.writeFileSync(fileName, imageBuffer);
-        return ctx.send('Success', {
+        ctx.send('Success', {
           data: `${host}/${fileSuffix}`,
           type: 'image',
         });
       })
       .catch((err) => {
         serverCfg.log.error(err);
-        return ctx.send('QueryError', err);
+        ctx.send('QueryError', err);
       });
   } catch (e) {
     serverCfg.log.error(e.stack);
