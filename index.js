@@ -11,7 +11,7 @@ import staticFiles from './lib/static-files';
 import Redis from './lib/redis';
 import {ScheduleJob} from './lib/schedule';
 
-const app = new Koa();
+const app = new Koa({proxy: true});
 
 // ctx.redis
 app.context.redis = redisCfg.reduce((s, v) => {
