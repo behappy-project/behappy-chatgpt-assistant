@@ -34,5 +34,9 @@
   "TokenParseError": {
     "code": 4008,
     "msg": "TokenParseError"
+  },
+  "LimitQNumError": {
+    "code": 4009,
+    "msg": "LimitQNumError"
   }
 }

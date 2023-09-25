@@ -367,6 +367,16 @@ const bot = new ChatSDK({
           return [{
             _id: nanoid(), type: 'text', content: {text: `${res.error}${errMsg}`}, position: 'left',
           }];
+        } else if (res.code === 4009) {
+          const errMsg = '抱歉，试用账户每日限制访问次数（6次）已到，请注册个新账户使用吧！';
+          setTimeout(() => {
+            window.sessionStorage.clear();
+            window.location.reload();
+          }, 3000);
+          // 用 isv 消息解析器处理数据
+          return [{
+            _id: nanoid(), type: 'text', content: {text: `${errMsg}`}, position: 'left',
+          }];
         } else {
           // 用 isv 消息解析器处理数据
           return [{
