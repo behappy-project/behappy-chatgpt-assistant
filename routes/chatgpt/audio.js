@@ -2,11 +2,11 @@ import Router from 'koa-router';
 import fs from 'fs';
 import {serverCfg, sysCfg} from '../../config';
 import {getSystemContent} from '../../lib/util';
-import {incrQueryCount} from '../../lib/recordByQuery';
+import {filterDemoUser, incrQueryCount} from '../../lib/recordByQuery';
 
 const router = Router({prefix: sysCfg.prefix + sysCfg.apiPrefix});
 
-router.post('/audio/transcriptions', incrQueryCount, async (ctx) => {
+router.post('/audio/transcriptions', filterDemoUser, incrQueryCount, async (ctx) => {
   const params = ctx.request.body;
   serverCfg.log.debug(__filename, '[audioTranscriptions] Request params:', params);
   try {

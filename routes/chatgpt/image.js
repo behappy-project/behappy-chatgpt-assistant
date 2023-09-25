@@ -2,11 +2,11 @@ import Router from 'koa-router';
 import axios from 'axios';
 import fs from 'fs';
 import {serverCfg, sysCfg, envCfg} from '../../config';
-import {incrQueryCount} from '../../lib/recordByQuery';
+import {filterDemoUser, incrQueryCount} from '../../lib/recordByQuery';
 
 const router = Router({prefix: sysCfg.prefix + sysCfg.apiPrefix});
 const host = 'https://www.wang-xiaowu.site';
-router.post('/images/generations', incrQueryCount, async (ctx) => {
+router.post('/images/generations', filterDemoUser, incrQueryCount, async (ctx) => {
   const params = {...ctx.request.body};
   serverCfg.log.debug(__filename, '[imageGenerations] Request params:', params);
   try {
